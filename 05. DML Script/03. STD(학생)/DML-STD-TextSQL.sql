@@ -70,7 +70,17 @@ from tblstudent s
 
 -- ●4. 한 학생(강민혁학생)의 전체출결을 조회한다. 
 --  - 현재 3,4월달의 근태정보만 더미정보로 나타나있기 때문에 결과를 보여줄 때 전체인것처럼 잘 만들어서 보여줘야할듯 
-select att.attenddate, att.workon, att.workoff, att.state  
+select att.attenddate, to_char(att.workon,'hh24:mi:ss') as workon, 
+       to_char(att.workoff,'hh24:mi:ss') as workoff, state
+/*       case
+          when att.workOn > '09:10:00' and att.workOff is not null then '지각'
+          when att.workOn < '09:10:00' and att.workOff > '17:50:01'then '정상'
+          when att.workOff - att.workOn < 4 
+              and att.workOff is not null
+              and att.workOn  is not null then '결석'
+         when att.workOn  is null  then '결석'
+        when att.workOff - att.workOn > 4 then '조퇴'     
+       end as state      ---> 에러확인*/
 from  tblstudent s
     inner join tblregicourse regi 
         on s.student_seq = regi.student_seq
@@ -80,13 +90,25 @@ from  tblstudent s
                         on att.regicourse_seq = regi.regicourse_seq
                             where s.name = '강민혁'
                                 order by att.attenddate;
- 
- 
- 
+/* 
+  select 
+   case
+       when tblAttendanceMgmt.workOn > '09:10:00' and tblAttendanceMgmt.workOff is not null then '지각'
+       when tblAttendanceMgmt.workon < '09:10:00' and tblAttendanceMgmt.workoff > '17:50:01'then '정상'
+       when tblAttendanceMgmt.workOff - tblAttendanceMgmt.workOn < 4 
+        and tblAttendanceMgmt.workOff is not null
+        and tblAttendanceMgmt.workOn  is not null then '결석'
+       when tblAttendanceMgmt.workOn  is null  then '결석'
+       when tblAttendanceMgmt.workOff - tblAttendanceMgmt.workOn > 4 then '조퇴'     
+   end as 근태
+ from dual;
+ */
  
  
 -- ●5. 한 학생의 월간출결을 조회한다.
 --   - 현재 3,4월달의 근태정보만 더미정보에 존재
+--select att.attenddate, to_char(att.workon,'hh24:mi:ss') as workon, 
+--        to_char(att.workoff,'hh24:mi:ss') as workoff, att.state  ;
 select att.attenddate, att.workon, att.workoff, att.state  
 from  tblstudent s
     inner join tblregicourse regi 
@@ -103,7 +125,8 @@ from  tblstudent s
 
 
 -- ●6. 한 학생의 일별출결을 조회한다.
-select att.attenddate, att.workon, att.workoff, att.state  
+select att.attenddate, to_char(att.workon,'hh24:mi:ss') as workon, 
+        to_char(att.workoff,'hh24:mi:ss') as workoff, att.state  
 from  tblstudent s
     inner join tblregicourse regi 
         on s.student_seq = regi.student_seq
