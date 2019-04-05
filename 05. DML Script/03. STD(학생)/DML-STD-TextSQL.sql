@@ -299,9 +299,77 @@ from tblstudent s --학생
  
  
  
- 
- 
- 
+--●11. 출결입력
+/*
+[ 근태관리 테이블 구조 ]
+CREATE TABLE tblAttendanceMgmt 
+(
+    attendanceMgmt_seq NUMBER PRIMARY KEY, -- 번호(PK)
+    attendDate DATE NOT NULL, -- 날짜
+    workOn DATE, -- 출근시간 // 9시 기준
+    workOff DATE, -- 퇴근시간 // 5시 50분 기준
+    state VARCHAR2(10), -- 근태상황 // 정상, 결석, 지각, 조퇴, 병가, 기타
+    regiCourse_seq NUMBER REFERENCES tblRegiCourse(regiCourse_seq) NOT NULL -- 수강신청번호(FK)
+);
+*/
+--[기존 INSERT문 예시]
+ INSERT INTO tblAttendanceMgmt 
+ (attendanceMgmt_seq, attendDate, workOn, workOff, state, regiCourse_seq)
+    VALUES 
+        (AttendanceMgmt_seq.nextVal, to_date('2019-04-16','yyyy-mm-dd'), to_date('2019-04-16 08:15','yyyy-mm-dd hh24:mi'), 
+         to_date('2019-04-16 18:15','yyyy-mm-dd hh24:mi'), '정상', 4);
+
+--[출근시]
+ INSERT INTO tblAttendanceMgmt (attendanceMgmt_seq, attendDate, workOn, workOff, state, regiCourse_seq)
+    VALUES (AttendanceMgmt_seq.nextVal, to_date('미리 입력되어 있는 날짜','yyyy-mm-dd'), 
+            to_date('지문찍은날짜(입력시)의 sysdate','yyyy-mm-dd hh24:mi'), null, 
+            ( select case
+                      when to_char(sysdate,'hh24:mi:ss') > '09:10:00' then '지각'
+                     end as 근태 from dual) 
+            ,수강신청번호 );
+ --  workOff는 null값으로 시작하여 퇴근시 업데이트됨
+ --  9:10:00 이후에 찍힌 출근 결과는 지각처리
+ /* 사용된 서브쿼리 구문
+ select 
+   case
+       when to_char(sysdate,'hh24:mi:ss') > '09:10:00' then '지각'
+   end as 근태
+ from dual;
+*/  
+    
+         
+--[퇴근시]
+--퇴근 지문을 찍은 순간 workOff 값이 업데이트 됨 (null > sysdate)
+update tblAttendanceMgmt set workOff = sysdate where tblRegiCourse.RegiCourse_seq = 수강신청번호;
+
+-- workoff값이 입력된 후 state가 업데이트 됨
+update tblAttendanceMgmt set 
+state = 
+(select 
+   case
+       when tblAttendanceMgmt.workOn > '09:10:00' and tblAttendanceMgmt.workOff is not null then '지각'
+       when tblAttendanceMgmt.workon < '09:10:00' and tblAttendanceMgmt.workoff > '17:50:01'then '정상'
+       when tblAttendanceMgmt.workOff - tblAttendanceMgmt.workOn < 4 
+        and tblAttendanceMgmt.workOff is not null
+        and tblAttendanceMgmt.workOn  is not null then '결석'
+       when tblAttendanceMgmt.workOn  is null  then '결석'
+       when tblAttendanceMgmt.workOff - tblAttendanceMgmt.workOn > 4 then '조퇴'     
+   end as 근태 from dual) 
+        where tblRegiCourse.RegiCourse_seq = 수강신청번호;
+
+/* 사용된 서브쿼리 구문
+ select 
+   case
+       when tblAttendanceMgmt.workOn > '09:10:00' and tblAttendanceMgmt.workOff is not null then '지각'
+       when tblAttendanceMgmt.workon < '09:10:00' and tblAttendanceMgmt.workoff > '17:50:01'then '정상'
+       when tblAttendanceMgmt.workOff - tblAttendanceMgmt.workOn < 4 
+        and tblAttendanceMgmt.workOff is not null
+        and tblAttendanceMgmt.workOn  is not null then '결석'
+       when tblAttendanceMgmt.workOn  is null  then '결석'
+       when tblAttendanceMgmt.workOff - tblAttendanceMgmt.workOn > 4 then '조퇴'     
+   end as 근태
+ from dual;
+*/ 
  
  
  
