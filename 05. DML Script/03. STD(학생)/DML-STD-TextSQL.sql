@@ -1,4 +1,5 @@
 -- DML-STD-TextSQL.sql
+-- 성적100% -> 80:20
 
 
 --●1. 학생은 학생계정으로 로그인을 해야한다.
@@ -38,10 +39,11 @@ from tblstudent s
 --●3. 성적조회 > 과목별 성적을 조회한다 
 --  - 로그인한 특정 학생 1명에 대한 정보만을 뽑아옴
 --  - 출결(근태)이 부분에 있어 JAVA 구현 시, 집계함수이용할 것 > 서브쿼리 (조인X)
---  - 성적 80% + 출결 20%
+--  - 성적 100%
+--  -★☆★☆ 수정사항[성적 80% + 출결 20%] ★☆★☆
 -- 과목번호, 과목명, 과목시작일, 과목종료일, 교사명, 시험날짜, 시험, 출결, 총점 => 가상컬럼(SQL쿼리 추가필요)
 select 
-    * 
+    sub.subject_seq, sub.name, os.startdate, os.enddate, t.name, g.score
 from tblstudent s
     inner join tblRegiCourse regi --수강신청
         on s.student_seq = regi.student_seq
@@ -58,7 +60,10 @@ from tblstudent s
                                                         inner join tblsubject sub --과목
                                                             on sub.subject_seq = os.subject_seq
                                                                   inner join tblgrade g --성적
-                                                                       on g.opensubjectmgmt_seq = os.opensubjectmgmt_seq;
+                                                                       on g.opensubjectmgmt_seq = os.opensubjectmgmt_seq
+                                                                          --  inner join tblattendancemgmt att
+                                                                            --   on att.regicourse_seq = regi.regicourse_seq
+                                                                                    where s.name = '강민혁';
 
 
 
@@ -105,7 +110,7 @@ from  tblstudent s
             inner join tblopencourse o
                 on o.opencourse_seq = regi.opencourse_seq
                     inner join tblattendancemgmt att
-                        on att.regicourse_seq = regi.regicourse_seq
+                        on att.regicourse_seq = regi.regicourse_seq;
                             where s.name = '강민혁'  and '날짜지정' 
                             --특정학생이름과 지정될 날짜
                             --강민혁, 날짜지정의 경우 임시로 넣어놓은 값이며 실제는 사용자를 통해 입력받을 값이다.
