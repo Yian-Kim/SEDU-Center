@@ -44,7 +44,8 @@ insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 
 insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'Front-end 개발', '15'); --21
 insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'Back-end 개발', '17'); --22
 insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'Framework', '12'); --23
-insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'Testing & Development', '14'); --24
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'Testing' || '&' || 'Development', '14'); --24
+
 insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'Python', '15'); --25
 insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'JAVA 프로그래밍', '15'); --26
 insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, '데이터베이스', '10'); -- 27
@@ -86,12 +87,12 @@ insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 
 -- 02. 강의실 더미데이터
 ------------------------------------------------------------------------------------------------------------------------------------------------
 
-insert into tblRoom (room_seq, roomName) values (room_seq.nextval, '제1 강의실');
-insert into tblRoom (room_seq, roomName) values (room_seq.nextval, '제2 강의실');
-insert into tblRoom (room_seq, roomName) values (room_seq.nextval, '제3 강의실');
-insert into tblRoom (room_seq, roomName) values (room_seq.nextval, '제4 강의실');
-insert into tblRoom (room_seq, roomName) values (room_seq.nextval, '제5 강의실');
-insert into tblRoom (room_seq, roomName) values (room_seq.nextval, '제6 강의실');
+insert into tblRoom (room_seq, roomName) values (room_seq.nextval, '1 강의실');
+insert into tblRoom (room_seq, roomName) values (room_seq.nextval, '2 강의실');
+insert into tblRoom (room_seq, roomName) values (room_seq.nextval, '3 강의실');
+insert into tblRoom (room_seq, roomName) values (room_seq.nextval, '4 강의실');
+insert into tblRoom (room_seq, roomName) values (room_seq.nextval, '5 강의실');
+insert into tblRoom (room_seq, roomName) values (room_seq.nextval, '6 강의실');
 
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
