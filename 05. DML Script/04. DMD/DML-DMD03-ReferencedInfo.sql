@@ -266,9 +266,6 @@ INSERT INTO tblRegiCourse (regiCourse_seq, student_seq, openCourse_seq) VALUES (
 INSERT INTO tblRegiCourse (regiCourse_seq, student_seq, openCourse_seq) VALUES (RegiCourse_seq.nextVal, 37, 2);
 INSERT INTO tblRegiCourse (regiCourse_seq, student_seq, openCourse_seq) VALUES (RegiCourse_seq.nextVal, 38, 2);
 INSERT INTO tblRegiCourse (regiCourse_seq, student_seq, openCourse_seq) VALUES (RegiCourse_seq.nextVal, 39, 2);
-INSERT INTO tblRegiCourse (regiCourse_seq, student_seq, openCourse_seq) VALUES (RegiCourse_seq.nextVal, 37, 2);
-INSERT INTO tblRegiCourse (regiCourse_seq, student_seq, openCourse_seq) VALUES (RegiCourse_seq.nextVal, 38, 2);
-INSERT INTO tblRegiCourse (regiCourse_seq, student_seq, openCourse_seq) VALUES (RegiCourse_seq.nextVal, 39, 2);
 INSERT INTO tblRegiCourse (regiCourse_seq, student_seq, openCourse_seq) VALUES (RegiCourse_seq.nextVal, 40, 2);
 INSERT INTO tblRegiCourse (regiCourse_seq, student_seq, openCourse_seq) VALUES (RegiCourse_seq.nextVal, 41, 2);
 INSERT INTO tblRegiCourse (regiCourse_seq, student_seq, openCourse_seq) VALUES (RegiCourse_seq.nextVal, 42, 2);
