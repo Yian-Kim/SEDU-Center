@@ -1,10 +1,12 @@
 -- DML-STD-TextSQL.sql
 
+
 --●1. 학생은 학생계정으로 로그인을 해야한다.
 select student_seq 
     from tblStudent 
         where name = 'reader.readline() > 사용자이름' 
             and pw = 'reader.readline() > 비밀번호(주민번호 7자리)' ;
+
 
 
 
@@ -29,6 +31,8 @@ from tblstudent s
                                         on o.opencourse_seq=tc.opencourse_seq
                                             inner join tblTeacher t
                                                 on t.teacher_seq = tc.teacher_seq;
+
+
 
 
 --●3. 성적조회 > 과목별 성적을 조회한다 
@@ -56,6 +60,9 @@ from tblstudent s
                                                                   inner join tblgrade g --성적
                                                                        on g.opensubjectmgmt_seq = os.opensubjectmgmt_seq;
 
+
+
+
 -- ●4. 한 학생(강민혁학생)의 전체출결을 조회한다. 
 --  - 현재 3,4월달의 근태정보만 더미정보로 나타나있기 때문에 결과를 보여줄 때 전체인것처럼 잘 만들어서 보여줘야할듯 
 select att.attenddate, att.workon, att.workoff, att.state  
@@ -68,6 +75,10 @@ from  tblstudent s
                         on att.regicourse_seq = regi.regicourse_seq
                             where s.name = '강민혁'
                                 order by att.attenddate;
+ 
+ 
+ 
+ 
  
 -- ●5. 한 학생의 월간출결을 조회한다.
 --   - 현재 3,4월달의 근태정보만 더미정보에 존재
@@ -82,6 +93,8 @@ from  tblstudent s
                             where substr(att.attenddate,4,2)='입력한 숫자' ;
                             -- 숫자 입력 시, 1의 자리수 달은 03,04,...표기
                             -- 입력한 숫자의 경우 월을 의미함.
+
+
 
 
 -- ●6. 한 학생의 일별출결을 조회한다.
@@ -102,6 +115,8 @@ from  tblstudent s
 select * from tblattendancemgmt 
     where substr(attenddate,1,2)=19 
         and substr(attenddate,4,2)=03 and substr(attenddate,7,2)=03 ;
+
+
 
 
 --●7. 교사평가
@@ -186,7 +201,17 @@ select teq.evalq_seq, teq.question,tea.subjective_a
                                                     on teq.evalQ_seq = tea.evalQ_seq    
                                                         where tea.subjective_a is not null
                                                             order by tea.evalq_seq;
-                                      
+    
+-------------------------------------------------------------------        
+--객관식 답변 입력시 사용될 insert문 예제
+INSERT INTO tblTeacherEval_A (evalA_seq, subjective_A,objective_A, evalQ_seq, regiCourse_seq)
+    VALUES (TeacherEval_A_seq.nextVal, null, 5, 5, 1); 
+
+--주관식 답변 입력시 사용될 insert문 예제
+INSERT INTO tblTeacherEval_A (evalA_seq, subjective_A,objective_A, evalQ_seq, regiCourse_seq)
+    VALUES (TeacherEval_A_seq.nextVal, '입력하고자하는 평가내용', null, 6, 1); --6: 좋았던점/7: 아쉬운점+개선할점
+    
+    
                                                        
                                                               
 --●8. 상담신청
@@ -203,6 +228,9 @@ from tblstudent s
                                 on tc.openCourse_seq = o.openCourse_seq
                                     inner join tblTeacher t
                                         on t.teacher_seq = tc.teacher_seq;
+
+
+
 
 --●9. 상담일지조회
 --  - 상담이 완료된 상담내역에 대해 학생이 조회할 수 있다.
@@ -232,6 +260,7 @@ from tblstudent s --학생
                     inner join tblConsultRecord crd --상담일지
                         on crd.consult_seq = creq.consult_seq;
                 
+ 
  
  
  --●10. 과정 및 과목 조회
