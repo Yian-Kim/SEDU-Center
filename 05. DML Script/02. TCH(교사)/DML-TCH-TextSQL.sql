@@ -93,7 +93,7 @@ SELECT s.subject_seq, s.name, os.enddate
                                 -- where tc.teacher_seq = 현재 로그인 된 교사 번호 변수;
                                 -- and oc.opencourse_seq = 현재 로그인 된 교사의 현재 과정 번호 변수
 
---과목 변수(자바에 저장할) : 과목명 선택할때
+--과목 번호(자바에 저장할) : 과목명 선택할때
 SELECT s.subject_seq
     FROM tblTeacherCourse tc
         INNER JOIN tblOpenCourse oc
@@ -120,14 +120,17 @@ select st.student_seq, st.name, su.name, g.score from tblStudent st --학생 테
                                     inner join tblopencourse oc --개설과정 테이블
                                         on oc.opencourse_seq = rg.opencourse_seq
                                             inner join tblteachercourse tc --담당과정 테이블
-                                                on tc.opencourse_seq = oc.opencourse_seq;
-                                                    --where tc.teacher_seq = 현재 로그인 된 교사 번호 변수;
+                                                on tc.opencourse_seq = oc.opencourse_seq
+                                                    inner join tblresult r
+                                                        on r.regicourse_seq = rg.regicourse_seq;
+                                                    --where tc.teacher_seq = 현재 로그인 된 교사 번호 변수
                                                     --and oc.opencourse_seq = 현재 로그인 된 교사의 현재 과정 번호 변수
-                                                    --and su.subject_seq = 현재 선택한 과목의 번호;
+                                                    --and su.subject_seq = 현재 선택한 과목의 번호
+                                                    --where r.state = '수료중';
 
 
--- 학생번호 입력후 성적입력 하기위한 학생번호(자바 변수에 저장)
-select st.student_seq from tblStudent st --학생 테이블
+-- 학생번호 입력후 성적입력 하기위한 수강신청번호(자바 변수에 저장)
+select rg.regicourse_seq from tblStudent st --학생 테이블
     inner join tblRegiCourse rg --수강 신청 테이블
         on st.student_seq = rg.student_seq
             inner join tblGrade g --성적정보 테이블
@@ -145,22 +148,29 @@ select st.student_seq from tblStudent st --학생 테이블
                                                     --and su.subject_seq = 현재 선택한 과목의 번호;                        
 
 
---선생님께 질문!  =========================================================                              
-update tblGrade set score = 점수 
-    where 
-        (select s.subject_seq from tblsubject s
-            inner join tblopensubjectmgmt osm
-                on s.subject_seq = osm.subject_seq
-                    inner join tblgrade grade
-                        on grade.opensubjectmgmt_seq = osm.opensubjectmgmt_seq) = 1;--student_seq = '학생번호(자바에 저장한)'--성적 점수 수정
+-- 학생번호 입력후 성적입력 하기위한 개설과목관리번호(자바 변수에 저장)
+select osm.opensubjectmgmt_seq from tblStudent st --학생 테이블
+    inner join tblRegiCourse rg --수강 신청 테이블
+        on st.student_seq = rg.student_seq
+            inner join tblGrade g --성적정보 테이블
+                on g.regiCourse_seq = rg.regiCourse_seq
+                    inner join tblOpenSubjectMgmt osm --개설 과목 관리 테이블
+                        on osm.openSubjectmgmt_seq = g.openSubjectmgmt_seq
+                            inner join tblSubject su --과목 테이블
+                                on su.subject_seq = osm.subject_seq
+                                    inner join tblopencourse oc --개설과정 테이블
+                                        on oc.opencourse_seq = rg.opencourse_seq
+                                            inner join tblteachercourse tc --담당과정 테이블
+                                                on tc.opencourse_seq = oc.opencourse_seq;
+                                                    --where tc.teacher_seq = 현재 로그인 된 교사 번호 변수;
+                                                    --and oc.opencourse_seq = 현재 로그인 된 교사의 현재 과정 번호 변수
+                                                    --and su.subject_seq = 현재 선택한 과목의 번호;
 
-select * from tblgrade
-where (select s.subject_seq from tblsubject s
-            inner join tblopensubjectmgmt osm
-                on s.subject_seq = osm.subject_seq
-                    inner join tblgrade grade
-                        on grade.opensubjectmgmt_seq = osm.opensubjectmgmt_seq) = 1;
---=======================================================================================
+                                                    
+--성적입력 (개설과목관리번호, 수강신청번호)                           
+update tblGrade set score = 점수 
+    where regiCourse_seq = 1 and openSubjectMgmt_seq = 2;
+
 
 
 
@@ -212,7 +222,7 @@ select s.name, am.attendDate, am.state from tblStudent s --학생 테이블
                                     --and attendDate between '' and ''; 
 
                     
-                    
+                  
 
 --날짜 조회
 -- 전체 학생 날짜 조회
@@ -356,7 +366,7 @@ from vwResult_Objective vwro
 --상담 일지
 
 --1. 상담 요청(조회)
-select cr.consult_seq ,s.student_seq, s.name, cr.requestDate, cr.requestContent from tblStudent s
+select s.student_seq, s.name, s.tel, s.major, cr.requestDate, cr.requestContent from tblStudent s
     inner join tblRegiCourse rg
         on s.student_seq = rg.student_seq
             inner join tblconsultrequest cr
@@ -421,23 +431,55 @@ select cr.requestcontent from tblStudent s
                  
 -- 상담 내역 입력
 insert into tblconsultrecord (record_seq, recordDate, recordContent, consult_seq) 
-    VALUES (ConsultRecord_seq.nextVal, to_date(sysdate,'yyyy-mm-dd'), '상담 내용 변수명', '상담 요청 번호 변수명');
+    VALUES (ConsultRecord_seq.nextVal, to_date(sysdate,'yyyy-mm-dd'), '상담 내용 변수', '상담 요청 번호 변수');
+--상담일지에 있는 상담 요청번호 = 상담 요청에 있는 번호와 같다면 요청 목록에서 사라짐.
+                 
+                 
+--상담 내역에서 학생 검색해서 상담 내역 조회
+--검색시 필요한 학생이름(자바에 저장할)
+select s.name from tblStudent s
+    inner join tblRegiCourse rg
+        on s.student_seq = rg.student_seq
+            inner join tblconsultrequest cr
+                on rg.regicourse_seq = cr.regicourse_seq
+                    inner join tblOpenCourse oc
+                        on rg.opencourse_seq = oc.opencourse_seq
+                            inner join tblteachercourse tc
+                                on tc.opencourse_seq = oc.opencourse_seq
+                                    inner join tblTeacher t
+                                        on t.teacher_seq = tc.teacher_seq
+                                            inner join tblConsultRecord crecord
+                                                on crecord.consult_seq = cr.consult_seq;
+                                                    --where t.teacher_seq = 현재 로그인 된 교사번호변수;
+                 
+                                                               
+                                                                                                                  
+select * from tblresult;                 
+-- 성적 null인거 중도탈락으로 바꾸기                 
+select st.student_seq, st.name, su.name, g.score,
+    case
+        when g.score is not null then g.score || '점'
+        when g.score is null then '중도탈락'
+    end as scoretext
+from tblStudent st --학생 테이블
+    inner join tblRegiCourse rg --수강 신청 테이블
+        on st.student_seq = rg.student_seq
+            inner join tblGrade g --성적정보 테이블
+                on g.regiCourse_seq = rg.regiCourse_seq
+                    inner join tblOpenSubjectMgmt osm --개설 과목 관리 테이블
+                        on osm.openSubjectmgmt_seq = g.openSubjectmgmt_seq
+                            inner join tblSubject su --과목 테이블
+                                on su.subject_seq = osm.subject_seq
+                                    inner join tblopencourse oc --개설과정 테이블
+                                        on oc.opencourse_seq = rg.opencourse_seq
+                                            inner join tblteachercourse tc --담당과정 테이블
+                                                on tc.opencourse_seq = oc.opencourse_seq
+                                                    inner join tblattendancemgmt admg
+                                                        on admg.regicourse_seq = rg.regicourse_seq
+                                                    where tc.teacher_seq = 1
+                                                    and oc.opencourse_seq = 1
+                                                    and su.subject_seq = 1
+                                                    and admg.state = '수료 중';
 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
                  
                     
