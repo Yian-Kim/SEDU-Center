@@ -34,7 +34,7 @@ select name, pw from tblTeacher;
 -- ======= 메인 > 교사 > 교사 메뉴 > 강의스케줄
 --------------------------------------------------------------------------------------------------------------------
 
--- 교사의 과정
+-- 교사의 과정 (class CourseOfTeacher #1)
 
 --create or replace view vwSchedule_course
 --as
@@ -50,7 +50,7 @@ select oc.opencourse_seq, c.name, oc.startDate, oc.endDate, r.roomName from tblT
                                     -- where t.teacher_seq = 현재 로그인 된 교사 번호 변수
  
 
---과정번호(자바 변수에 저장할)
+--과정번호(자바 변수에 저장할) (class CourseOfTeacher #2)
 select oc.opencourse_seq from tblTeacher t --교사 계정 테이블
     inner join tblTeachercourse tc --담당과정 테이블
         on t.teacher_seq = tc.teachercourse_seq
@@ -61,7 +61,7 @@ select oc.opencourse_seq from tblTeacher t --교사 계정 테이블
                             inner join tblRoom r --강의실 테이블
                                 on oc.room_seq = r.room_seq;
                         
---담당 과정의 과목
+--담당 과정의 과목 (class SubjectOfCourse)
 --create or replace view vwSchedule_subject
 --as
 select s.name, osm.startDate, osm.endDate, s.period 
@@ -82,7 +82,7 @@ drop view vwSchedule_subject;
 --------------------------------------------------------------------------------------------------------------------
 -- ======= 메인 > 교사 > 교사 메뉴 > 강의스케줄 > 학생정보
 --------------------------------------------------------------------------------------------------------------------
-
+--(class StudentOfCourse #4)
 --create or replace view vwSchedule_student
 --as
 select s.name, s.student_seq, s.tel, s.major, c.name from tblOpenCourse oc --개설과정 테이블
@@ -108,29 +108,31 @@ select s.name, s.student_seq, s.tel, s.major, c.name from tblOpenCourse oc --개
 --과정명
 -- 뷰테이블 스케쥴코스 따와서 출력
 
-
+--#1 CourseOfTeacher 클래스 참조
 -- 과목별 성적 출력
 -- 과목명->과목명 선택->학생성적 출력
 -- 과목명 : 과목번호 과목명 과목끝날짜 : 과목 선택 시 해당 과목 전체 학생 점수 출력
+-- class SubjectforGrade #1
 SELECT s.subject_seq, s.name, os.enddate
-    FROM tblTeacherCourse tc
-        INNER JOIN tblOpenCourse oc
+    FROM tblTeacherCourse tc --담당 과정 테이블
+        INNER JOIN tblOpenCourse oc --개설 과정 테이블
             ON tc.openCourse_seq = oc.openCourse_seq
-                INNER JOIN tblOpenSubjectMgmt os
+                INNER JOIN tblOpenSubjectMgmt os --개설과목관리 테이블
                     ON oc.openCourse_seq = os.openCourse_seq
-                        INNER JOIN tblSubject s
+                        INNER JOIN tblSubject s --과목 테이블
                             ON s.subject_seq = os.subject_seq;
                                 -- where tc.teacher_seq = 현재 로그인 된 교사 번호 변수;
                                 -- and oc.opencourse_seq = 현재 로그인 된 교사의 현재 과정 번호 변수
 
 --과목 번호(자바에 저장할) : 과목명 선택할때
+-- class SubjectforGrade #2
 SELECT s.subject_seq
-    FROM tblTeacherCourse tc
-        INNER JOIN tblOpenCourse oc
+    FROM tblTeacherCourse tc --담당 과정 테이블
+        INNER JOIN tblOpenCourse oc --개설 과정 테이블
             ON tc.openCourse_seq = oc.openCourse_seq
-                INNER JOIN tblOpenSubjectMgmt os
+                INNER JOIN tblOpenSubjectMgmt os --개설과목관리 테이블
                     ON oc.openCourse_seq = os.openCourse_seq
-                        INNER JOIN tblSubject s
+                        INNER JOIN tblSubject s --과목 테이블
                             ON s.subject_seq = os.subject_seq;
                                 -- where tc.teacher_seq = 현재 로그인 된 교사 번호 변수;
                                 -- and oc.opencourse_seq = 현재 로그인 된 교사의 현재 과정 번호 변수
@@ -138,6 +140,7 @@ SELECT s.subject_seq
 
 -- 과목 선택 후 과목당 전체 학생 성적 출력
 -- 과목명 학생이름 학번 성적 
+-- class GradeOutput
 select st.student_seq, st.name, su.name, g.score from tblStudent st --학생 테이블
     inner join tblRegiCourse rg --수강 신청 테이블
         on st.student_seq = rg.student_seq
@@ -151,7 +154,7 @@ select st.student_seq, st.name, su.name, g.score from tblStudent st --학생 테
                                         on oc.opencourse_seq = rg.opencourse_seq
                                             inner join tblteachercourse tc --담당과정 테이블
                                                 on tc.opencourse_seq = oc.opencourse_seq
-                                                    inner join tblresult r
+                                                    inner join tblresult r --수료여부 테이블
                                                         on r.regicourse_seq = rg.regicourse_seq;
                                                     --where tc.teacher_seq = 현재 로그인 된 교사 번호 변수
                                                     --and oc.opencourse_seq = 현재 로그인 된 교사의 현재 과정 번호 변수
@@ -160,6 +163,7 @@ select st.student_seq, st.name, su.name, g.score from tblStudent st --학생 테
 
 
 -- 학생번호 입력후 성적입력 하기위한 수강신청번호(자바 변수에 저장)
+-- class GradeInput
 select rg.regicourse_seq from tblStudent st --학생 테이블
     inner join tblRegiCourse rg --수강 신청 테이블
         on st.student_seq = rg.student_seq
@@ -179,6 +183,7 @@ select rg.regicourse_seq from tblStudent st --학생 테이블
 
 
 -- 학생번호 입력후 성적입력 하기위한 개설과목관리번호(자바 변수에 저장)
+-- class GradeInput
 select osm.opensubjectmgmt_seq from tblStudent st --학생 테이블
     inner join tblRegiCourse rg --수강 신청 테이블
         on st.student_seq = rg.student_seq
@@ -207,6 +212,7 @@ update tblGrade set score = 점수
 -- 04. 출결관리 및 조회
 --------------------------------------------------------------------------------------------------------------------
 
+--class AttendanceMgmt
 --기간 조회, 날짜 조회
 --전체, 개인
 --시작날 ~ 마지막날
@@ -225,6 +231,7 @@ select s.name, am.attendDate, am.state from tblStudent s --학생 테이블
                                     --where tc.teacher_seq = 현재 로그인 된 교사 번호 변수
                                     --and attendDate between '' and ''; 
 
+--class AttendanceMgmt
 --개인별 기간 조회를 위한 학생 이름(자바 변수에 저장)
 select s.name from tblStudent s --학생 테이블
     inner join tblRegiCourse rg --수강신청 테이블
@@ -238,6 +245,7 @@ select s.name from tblStudent s --학생 테이블
                                     --where tc.teacher_seq = 현재 로그인 된 교사 번호 변수
                                     --and attendDate between '' and ''; 
 
+--class AttendanceMgmt
 --개인별 기간 조회
 select s.name, am.attendDate, am.state from tblStudent s --학생 테이블
     inner join tblRegiCourse rg --수강신청 테이블
@@ -254,7 +262,7 @@ select s.name, am.attendDate, am.state from tblStudent s --학생 테이블
 
                     
                   
-
+--class AttendanceMgmt
 --날짜 조회
 -- 전체 학생 날짜 조회
 select s.name from tblStudent s --학생 테이블
@@ -269,7 +277,7 @@ select s.name from tblStudent s --학생 테이블
                                     --where tc.teacher_seq = 현재 로그인 된 교사 번호 변수
                                     --and attendDate = ''; 
 
-
+--class AttendanceMgmt
 --개인별 날짜 조회
 select s.name, am.attendDate, am.state from tblStudent s --학생 테이블
     inner join tblRegiCourse rg --수강신청 테이블
@@ -290,6 +298,7 @@ select s.name, am.attendDate, am.state from tblStudent s --학생 테이블
 -- 05. 교사 평가 결과 조회
 --------------------------------------------------------------------------------------------------------------------
 
+--class EvalSubjective
 --주관식 좋았던 점
 --create or replace view vwPros --좋았던 점 뷰
 --as
@@ -313,7 +322,7 @@ select tea.subjective_A from tblTeacher t
 --select rownum, p.* from vwPros p;
 
 
-
+--class EvalSubjective
 --주관식 아쉬운 점
 --create or replace view vwCons --아쉬운 점 뷰
 --as
@@ -338,24 +347,24 @@ select tea.subjective_A from tblTeacher t
 
 
 
-
+-- class DTO EvalObjective
 --객관식
-create or replace view vwResult_Objective
-as
-select t.teacher_seq, teq.question, tea.objective_A, tea.evalq_seq from tblTeacher t
-    inner join tblTeacherCourse tc
+--create or replace view vwResult_Objective
+--as
+select t.teacher_seq, teq.question, tea.objective_A, tea.evalq_seq from tblTeacher t --교사계정 테이블
+    inner join tblTeacherCourse tc --담당과정 테이블
         on t.teacher_seq = tc.teacher_seq
-            inner join tblOpenCourse oc
+            inner join tblOpenCourse oc --개설과정 테이블
                 on oc.openCourse_seq = tc.openCourse_seq
-                    inner join tblCourse c
+                    inner join tblCourse c --과정 테이블
                         on c.course_seq = oc.course_seq
-                            inner join tblRegiCourse rc
+                            inner join tblRegiCourse rc --수강신청 테이블
                                 on rc.openCourse_seq = oc.openCourse_seq
-                                    inner join tblTeacherEval_A tea
+                                    inner join tblTeacherEval_A tea --평가답변 테이블
                                         on tea.regiCourse_seq = rc.regiCourse_seq
-                                            inner join tblExample e
+                                            inner join tblExample e --보기 테이블
                                                 on e.example_seq = tea.objective_A
-                                                    inner join tblTeacherEval_Q teq
+                                                    inner join tblTeacherEval_Q teq --평가문제 테이블
                                                         on teq.evalQ_seq = tea.evalQ_seq;
                                                             --where t.teacher_seq = 현재 로그인 된 교사 번호 변수;
 drop view vwResult_Objective;
@@ -367,27 +376,27 @@ select question,evalq_seq,
     count(case 
         when objective_A = 5 then 5
         else null
-    end) / count(*) * 100 as 매우그렇다,
+    end) / count(*) * 100 as VeryGood,
     
         count(case
         when objective_A = 4 then 4
         else null
-    end) / count(*) * 100 as 그렇다,
+    end) / count(*) * 100 as Good,
     
         count(case
         when objective_A = 3 then 3
         else null
-    end) / count(*) * 100 as 보통이다,
+    end) / count(*) * 100 as Normal,
     
         count(case
         when objective_A = 2 then 2
         else null
-    end) / count(*) * 100 as 아니다,
+    end) / count(*) * 100 as Bad,
     
         count(case
         when objective_A = 1 then 1
         else null
-    end) / count(*) * 100 as 매우아니다
+    end) / count(*) * 100 as VeryBad
 from vwResult_Objective vwro
     --where vwro.teacher_seq = 현재 로그인 된 교사 번호 변수
             group by question, evalq_seq
@@ -397,7 +406,7 @@ from vwResult_Objective vwro
 --------------------------------------------------------------------------------------------------------------------
 -- 06. 상담일지 조회
 --------------------------------------------------------------------------------------------------------------------
-
+-- class DTO_consult
 --1. 상담 요청(조회)
 select s.student_seq, s.name, s.tel, s.major, cr.requestDate, cr.requestContent from tblStudent s
     inner join tblRegiCourse rg
@@ -412,7 +421,7 @@ select s.student_seq, s.name, s.tel, s.major, cr.requestDate, cr.requestContent 
                                         on t.teacher_seq = tc.teacher_seq;
                                             --where t.teacher_seq = 현재 로그인 된 교사 번호 변수;
                     
-
+-- class DTO_consultFinish
 --2. 상담 내역 확인(완료 목록 조회)
 select s.student_seq, s.name, crecord.recorddate, crecord.recordcontent from tblStudent s
     inner join tblRegiCourse rg
@@ -428,7 +437,7 @@ select s.student_seq, s.name, crecord.recorddate, crecord.recordcontent from tbl
                                             inner join tblConsultRecord crecord
                                                 on crecord.consult_seq = cr.consult_seq;
                                                     --where t.teacher_seq = 현재 로그인 된 교사번호변수;
-
+-- class DTO_consultFinish
 --상담 요청 번호(변수에 저장할)                                                    
 select cr.consult_seq from tblStudent s
     inner join tblRegiCourse rg
@@ -444,7 +453,7 @@ select cr.consult_seq from tblStudent s
                                             inner join tblConsultRecord crecord
                                                 on crecord.consult_seq = cr.consult_seq;
                                                     --where t.teacher_seq = 현재 로그인 된 교사번호변수;
-
+-- class DTO_consultFinish
 --상담 요청 내용(변수에 저장할)                                                    
 select cr.requestcontent from tblStudent s
     inner join tblRegiCourse rg
@@ -467,7 +476,7 @@ insert into tblconsultrecord (record_seq, recordDate, recordContent, consult_seq
     VALUES (ConsultRecord_seq.nextVal, to_date(sysdate,'yyyy-mm-dd'), '상담 내용 변수', '상담 요청 번호 변수');
 --상담일지에 있는 상담 요청번호 = 상담 요청에 있는 번호와 같다면 요청 목록에서 사라짐.
                  
-                 
+-- class DTO_consultFinish                 
 --상담 내역에서 학생 검색해서 상담 내역 조회
 --검색시 필요한 학생이름(자바에 저장할)
 select s.name from tblStudent s
