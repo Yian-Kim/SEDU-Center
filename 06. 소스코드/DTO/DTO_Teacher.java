@@ -6,7 +6,14 @@ public class DTO_Teacher {
 	private String name; // 교사 이름
 	private String pw; // 교사 주민
 	private String tel; // 교사 전화번호
+	private String numberTeachers; // 교사 수
 	
+	public String getNumberTeachers() {
+		return numberTeachers;
+	}
+	public void setNumberTeachers(String numberTeachers) {
+		this.numberTeachers = numberTeachers;
+	}
 	public String getTeacher_Seq() {
 		return teacher_Seq;
 	}
