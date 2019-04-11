@@ -1,15 +1,15 @@
--- 1. 관리자 - 3. 학생 관리 - a. 학생 정보 전체보기
+-- 1. 관리자 - 4. 학생 관리 - a. 학생 정보 전체보기
 -- a. 학생명, 주민번호, 전화번호, 등록일, 학과
 SELECT student_seq, name, pw, tel, regiDate,
     (SELECT COUNT(*) 
         FROM tblStudent s
             INNER JOIN tblRegiCourse rc
                 ON s.student_seq = rc.student_seq
-                    WHERE s.student_seq = '자바에서for문으로 변수돌림') as numberCourseRequests , major
+                    WHERE s.student_seq = '자바에서for문으로 변수돌림'), major
                         FROM tblStudent;
 
 -- 자바에서 for문 변수 범위
-SELECT COUNT(*) as numberStudent FROM tblStudent;
+SELECT COUNT(*) FROM tblStudent;
 
 -- 1. 관리자 – 4. 학생 관리 - b. 학생 정보 등록 (학생명, 주민번호, 전화번호, 학과 입력)
 INSERT INTO tblStudent
@@ -24,24 +24,24 @@ SELECT name, pw FROM tblStudent;
 -- 수강신청
 SELECT student_seq FROM tblStudent WHERE name = '입력학생명'; -- 변수에 저장
 
-SELECT rownum, s.name as studentName, s.pw as studentPw, s.tel as studentTel, s.regidate as studentRegidate, 
+SELECT s.student_seq, s.name, s.pw, s.tel, s.regidate, 
     (SELECT COUNT(*) 
         FROM tblStudent s
             INNER JOIN tblRegiCourse rc
                 ON s.student_seq = rc.student_seq
-                    WHERE s.student_seq = '위에서 변수에 저장한것을 하나씩 대입') as numberCourseRequests, major
+                    WHERE s.student_seq = '위에서 변수에 저장한것을 하나씩 대입'), major
                         FROM tblStudent  s
                             WHERE name = '입력학생명';
 
 -- b. 주민번호 검색
 SELECT student_seq FROM tblStudent WHERE name = '입력주민번호'; -- 변수에 저장
 
-SELECT student_seq, name, pw, tel, regidate,
+SELECT student_seq, name, pw, tel, regidate 
     (SELECT COUNT(*) 
         FROM tblStudent s
             INNER JOIN tblRegiCourse rc
                 ON s.student_seq = rc.student_seq
-                    WHERE s.student_seq = '위에서 변수에 저장한것을 하나씩 대입') as numberCourseRequests, major
+                    WHERE s.student_seq = '위에서 변수에 저장한것을 하나씩 대입'), major
                         FROM tblStudent 
                             WHERE pw = '입력주민번호';
 
@@ -54,7 +54,7 @@ SELECT student_seq, name, pw, tel, regidate,
         FROM tblStudent s
             INNER JOIN tblRegiCourse rc
                 ON s.student_seq = rc.student_seq
-                    WHERE s.student_seq = '위에서 변수에 저장한것을 하나씩 대입') as numberCourseRequests, major
+                    WHERE s.student_seq = '위에서 변수에 저장한것을 하나씩 대입'), major
                         FROM tblStudent 
                             WHERE tel = '입력전화번호';
 
@@ -67,34 +67,27 @@ SELECT student_seq, name, pw, tel, regidate,
         FROM tblStudent s
             INNER JOIN tblRegiCourse rc
                 ON s.student_seq = rc.student_seq
-                    WHERE s.student_seq = '위에서 변수에 저장한것을 하나씩 대입') as numberCourseRequests
+                    WHERE s.student_seq = '위에서 변수에 저장한것을 하나씩 대입')
                         FROM tblStudent 
                         WHERE regidate = '입력등록일';
 
+-- e. 수강(신청) 횟수 검색(해시코드 이용?) -- 나중에 다시 볼것
+SELECT s.student_seq
+    FROM tblStudent s
+        INNER JOIN tblRegiCourse rc
+            ON s.student_seq = rc.student_seq; -- 해시코드 키값에 들어갈 것(50개)
 
+SELECT count(*)
+    FROM tblStudent s
+        INNER JOIN tblRegiCourse rc
+            ON s.student_seq = rc.student_seq
+                --where s.student_seq = 31;
+                group by s.student_seq; -- 해시코드 값에 들어갈 것(50개)
 
--- 삭제!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
----- e. 수강(신청) 횟수 검색(해시코드 이용?) -- 나중에 다시 볼것
---SELECT s.student_seq
---    FROM tblStudent s
---        INNER JOIN tblRegiCourse rc
---            ON s.student_seq = rc.student_seq; -- 해시코드 키값에 들어갈 것(50개)
---
---SELECT count(*)
---    FROM tblStudent s
---        INNER JOIN tblRegiCourse rc
---            ON s.student_seq = rc.student_seq
---                --where s.student_seq = 31;
---                group by s.student_seq; -- 해시코드 값에 들어갈 것(50개)
---
----- 해시코드 값이 입력한 수강(신청)횟수와 같을 때(검색조건)
---SELECT student_seq, name, pw, tel, regidate FROM tblStudent WHERE student_seq = '해시코드 키값';
----- 수강(신청)횟수는 해시코드 값 출력
---SELECT mojor FROM tblStudent WHERE student_seq = '해시코드 키값';
--- 삭제!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
+-- 해시코드 값이 입력한 수강(신청)횟수와 같을 때(검색조건)
+SELECT student_seq, name, pw, tel, regidate FROM tblStudent WHERE student_seq = '해시코드 키값';
+-- 수강(신청)횟수는 해시코드 값 출력
+SELECT mojor FROM tblStudent WHERE student_seq = '해시코드 키값';
 
 -- f. 학과 검색
 -- 수강신청
@@ -105,10 +98,18 @@ SELECT student_seq, name, pw, tel, regidate ,
         FROM tblStudent s
             INNER JOIN tblRegiCourse rc
                 ON s.student_seq = rc.student_seq
-                    WHERE s.student_seq = '위에서 변수에 저장한것을 하나씩 대입') as numberCourseRequests, major
+                    WHERE s.student_seq = '위에서 변수에 저장한것을 하나씩 대입'), major
                         FROM tblStudent 
                             WHERE major = '입력학과';
 
+-- 수강신청
+SELECT student_seq FROM tblStudent WHERE name = '입력학과'; -- 변수에 저장
+SELECT COUNT(*) 
+    FROM tblStudent s
+        INNER JOIN tblRegiCourse rc
+            ON s.student_seq = rc.student_seq
+                WHERE s.student_seq = '위에서 변수에 저장한것을 하나씩 대입';
+SELECT major FROM tblStudent WHERE name = '입력학과';
 
 -- b. 수정하기(수정하기 위해 입력한 학생명과 주민번호 둘다 일치하는 사람이 있으면 수정불가)
 SELECT name, pw FROM tblStudent; -- 배열이나 리스트에 넣고 하나씩 비교

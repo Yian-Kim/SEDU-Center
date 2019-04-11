@@ -1,6 +1,6 @@
 -- 1. 관리자 – 7. 상담일지 관리 및 조회 - a. 상담 요청 내역 - a. 일괄 조회 및 수정
 -- 번호 학생명 교사명 과정명 연락처 학과 출석률 상담요청일시 상담요청 내용(출석률이면 정상만 취급하는지? 조퇴나 이런건 빼고? 아직 안정함, 출석률 빼는걸 권장)
-SELECT rownum, stu.name as studentName, t.name as teacherName, c.name as courseName, stu.tel as studentTel, stu.major as studentMajor, cr.requestDate as callRequestDate, cr.requestContent as callRequestDetails
+SELECT rownum, stu.name, t.name, c.name, stu.tel, stu.major, cr.requestDate, cr.requestContent
     FROM tblConsultRequest cr
         INNER JOIN tblRegiCourse rc
             ON cr.regiCourse_seq = rc.regiCourse_seq
@@ -19,7 +19,7 @@ SELECT rownum, stu.name as studentName, t.name as teacherName, c.name as courseN
 SELECT consult_seq FROM tblConsultRequest;
 
 -- 수정하기와 삭제하기는 해당 요청날짜가 현재시간 이전은 불가능
-SELECT requestDate FROM tblConsultRequest WHERE consult_seq = '배열[입력한번호 -1]'; -- 요청날짜
+SELECT requestDate FROM tblConsultRequest WHERE consult_seq = '배열[입력한번호 -1]; -- 요청날짜
 SELECT sysdate FROM dual; -- 현재 날짜
 
 -- 수정하기
@@ -27,7 +27,7 @@ UPDATE tblConsultRequest SET requestDate = '입력한 요청날짜', requestCont
     WHERE consult_seq = '배열[입력한번호-1]';
 
 -- 삭제하기
-DELETE FROM tblConsultRequest WHERE consult_seq = '배열[입력한번호-1]';
+DELETE FROM tblConsultRequest WHERE consult_seq = '배열[입력한번호-1];
 
 
 
@@ -36,7 +36,7 @@ DELETE FROM tblConsultRequest WHERE consult_seq = '배열[입력한번호-1]';
 SELECT openCourse_seq FROM tblOpenCourse;
 
 -- b. 출력구문
-SELECT rownum, c.name as courseName, oc.startDate || '~' || oc.endDate as coureseDuration, t.name as teacherName, r.roomName as className
+SELECT rownum, c.name, oc.startDate || '~' || oc.endDate as 과정기간, t.name, r.roomName
     FROM tblCourse c
         INNER JOIN tblOpenCourse oc
             ON c.course_seq = oc.openCourse_seq
@@ -49,7 +49,7 @@ SELECT rownum, c.name as courseName, oc.startDate || '~' || oc.endDate as coures
 
 -- 1. 관리자 – 7. 상담일지 관리 및 조회 - a. 상담 요청 내역 - b. 교사별 조회 및 수정 – 1.선택(개설과정번호PK가 넘어옴)
 -- 교사이름
-SELECT t.name as teacherName
+SELECT t.name
     FROM tblTeacher t
         INNER JOIN tblTeacherCourse tc
             ON t.teacher_seq = tc.teacher_seq
@@ -58,14 +58,14 @@ SELECT t.name as teacherName
                         WHERE oc.openCourse_seq = '개설과정번호PK가 저장된 배열[입력한번호-1]';
 
 -- 과정명
-SELECT c.name as courseName
+SELECT c.name
     FROM tblCourse c
         INNER JOIN tblOpenCourse oc
             ON c.course_seq = oc.course_seq
                 WHERE oc.openCourse_seq = '개설과정번호PK가 저장된 배열[입력한번호-1]';
 
 -- 번호, 학생명, 연락처, 학과, 상담요청일, 상담요청내용
-SELECT rownum, stu.name as studentName, stu.tel as studentTel, stu.major as studentMajor, cr.requestDate as callRequestDate, cr.requestContent as callrequestDetails
+SELECT rownum, stu.name, stu.tel, stu.major, cr.requestDate, cr.requestContent
     FROM tblStudent stu
         INNER JOIN tblRegiCourse rc
             ON stu.student_seq = rc.student_seq
@@ -76,7 +76,7 @@ SELECT rownum, stu.name as studentName, stu.tel as studentTel, stu.major as stud
                                 WHERE oc.openCourse_seq = '개설과정번호PK가 저장된 배열[입력한번호-1]';
 
 -- 상담요청번호(PK) 배열에 저장
-SELECT cr.consult_seq as requestNumber
+SELECT cr.consult_seq
     FROM tblStudent stu
         INNER JOIN tblRegiCourse rc
             ON stu.student_seq = rc.student_seq
@@ -98,7 +98,7 @@ DELETE FROM tblConsultRequest
 -- 1. 관리자 – 7. 상담일지 관리 및 조회 - a. 상담 요청 내역 – c. 학생별 조회 및 수정 - 검색
 -- 학생명 입력받음
 -- 학생명 주민번호뒷자리 전화번호 등록일 상담(요청)횟수 학과, 상담요청횟수랑 학생번호 빼기
-SELECT rownum, stu.name as studentName, stu.pw as studentPw, stu.tel as studentTel, cr.requestDate as callrequestDate, stu.major as studentMajor
+SELECT rownum, stu.name, stu.pw, stu.tel, cr.requestDate, stu.major
     FROM tblStudent stu
         INNER JOIN tblRegiCourse rc
             ON stu.student_seq = rc.student_seq
@@ -107,7 +107,7 @@ SELECT rownum, stu.name as studentName, stu.pw as studentPw, stu.tel as studentT
                         WHERE stu.name = '입력한 이름명';
 
 -- 상담요청번호(PK) 배열에 저장하기
-SELECT cr.consult_seq as requestNumber
+SELECT cr.consult_seq
     FROM tblStudent stu
         INNER JOIN tblRegiCourse rc
             ON stu.student_seq = rc.student_seq
@@ -119,7 +119,7 @@ SELECT cr.consult_seq as requestNumber
 -- 1. 관리자 – 7. 상담일지 관리 및 조회 - a. 상담 요청 내역 – c. 학생별 조회 및 수정 – 검색 – 조회 및 수정
 -- 입력한 학생명 출력
 -- 과정명
-SELECT c.name as courseName
+SELECT c.name
     FROM tblCourse c
         INNER JOIN tblOpenCourse oc
             ON c.course_seq = oc.course_seq
@@ -130,7 +130,7 @@ SELECT c.name as courseName
                                 WHERE cr.consult_seq = '배열[입력받은번호-1]';
 
 -- 내용 출력, 출석률이랑 학번 빼기
-SELECT rownum, stu.name as studentName, stu.tel as studentTel, stu.major as studentMajor, cr.requestDate as callrequestDate, cr.requestContent as callrequestDetails
+SELECT rownum, stu.name, stu.tel, stu.major, cr.requestDate, cr.requestContent
     FROM tblConsultRequest cr
         INNER JOIN tblRegiCourse rc
             ON cr.regiCourse_seq = rc.regiCourse_seq
@@ -153,7 +153,7 @@ DELETE FROM tblConsultRequest
 
 -- 1. 관리자 – 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - a. 일괄 조회 및 수정
 -- 내용 출력
-SELECT rownum, record.recordDate as consultationDate, t.name as teacherName, stu.name as studentName, request.requestContent as callrequestDetails, record.recordContent as contentsConsultation
+SELECT rownum, record.recordDate, t.name, stu.name, request.requestContent, record.recordContent
     FROM tblConsultRecord record
         INNER JOIN tblConsultRequest request
             ON record.consult_seq = request.consult_seq
@@ -184,8 +184,8 @@ DELETE FROM tblConsultRecord
 -- 화면설계는 교사별 조회 및 수정이 아닌 개설과정별 조회 및 수정임
 -- 교사명 입력받음
 -- 내용 출력(번호, 교사명, 과정명, 과정기간, 강의실)
---SELECT rownum, 
---    FROM ;
+SELECT rownum, 
+    FROM ;
 
 
 
@@ -202,7 +202,7 @@ SELECT student_seq
         WHERE name = '입력받은 학생명';
 
 -- 수정하기 전 해당 학생의 상담일지 내용 출력
-SELECT rownum, record.recordDate as consultationDate, t.name as teacherName, stu.name as studentName, request.requestContent as callRequestDetails, record.recordcontent as contentsConsultation
+SELECT rownum, record.recordDate, t.name, stu.name, request.requestContent, record.recordcontent
     FROM tblConsultRecord record
         INNER JOIN tblConsultRequest request
             ON record.consult_seq = request.consult_seq
@@ -219,7 +219,7 @@ SELECT rownum, record.recordDate as consultationDate, t.name as teacherName, stu
                                                         WHERE stu.name = '강민혁';
 
 -- 배열에 해당 상담일지번호(PK) 저장하기
-SELECT record.record_seq as consultationNumber
+SELECT record.record_seq
     FROM tblConsultRecord record
         INNER JOIN tblConsultRequest request
             ON record.consult_seq = request.consult_seq

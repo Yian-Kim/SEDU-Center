@@ -8,7 +8,7 @@ INSERT INTO tblTeacherEval_Q VALUES (TeacherEval_Q.nextval, '입력받은 질문
 
 
 -- 1. 관리자 – 6. 교사 평가 관리 및 결과 조회 - b. 질문지 수정 및 삭제
-SELECT rownum, teq.question as questionnaire, t.type as questionType
+SELECT teq.evalQ_seq, teq.question as 질문, t.type as 유형
     FROM tblTeacherEval_Q teq
         INNER JOIN tblType t
             ON teq.type_seq = t.type_seq
@@ -17,9 +17,9 @@ SELECT rownum, teq.question as questionnaire, t.type as questionType
 -- 입력한 번호를 자바 변수에 저장
 
 
--- 1. 관리자 – 6. 교사 평가 관리 및 결과 조회 - b. 질문지 수정(입력받은 번호가 넘어옴) - 1. 수정하기
+-- 1. 관리자 – 6. 교사 평가 관리 및 결과 조회 - b. 질문지 수정(입력받은 번호가 넘어옴)
 -- 질문, 유형 출력
-SELECT rownum, teq.question as questionnaire, t.type as questionType
+SELECT teq.evalQ_seq, teq.question as 질문, t.type as 유형
     FROM tblTeacherEval_Q teq
         INNER JOIN tblType t
             ON teq.type_seq = t.type_seq
@@ -34,7 +34,7 @@ UPDATE tblTeacherEval_Q SET question = '입력한 질문', type_seq = '입력받
 
 -- 1. 관리자 – 6. 교사 평가 관리 및 결과 조회 - b. 질문지 수정 및 삭제 – 번호 선택 – 2. 삭제하기(입력받은 번호가 넘어옴)
 -- 질문, 유형 출력
-SELECT rownum, teq.question as questionnaire, t.type as questionType
+SELECT teq.evalQ_seq, teq.question as 질문, t.type as 유형
     FROM tblTeacherEval_Q teq
         INNER JOIN tblType t
             ON teq.type_seq = t.type_seq
@@ -47,15 +47,15 @@ DELETE FROM tblTeacher_Eval_Q
 
 -- 1. 관리자 – 6. 교사 평가 관리 및 결과 조회 - c. 교사 평가 결과 조회 및 삭제(개설과정번호 넘겨줌)
 -- 평가답변을 위한 for문 범위
-SELECT COUNT(*) as numberOpenCourse FROM tblOpenCourse;
+SELECT COUNT(*) FROM tblOpenCourse;
 
 -- 번호, 담당교사, 진행과정명, 평가답변개수
-select rownum, c.name as courseName, t.name as teacherName, 
+select oc.openCourse_seq as 번호, c.name as 과정명, t.name as 교사명, 
     (SELECT COUNT(*)
         FROM tblTeacherEval_A tea
             INNER JOIN tblRegiCourse rc
                 ON tea.regiCourse_seq = rc.regiCourse_seq
-                    where rc.openCourse_seq = '해당개설과정 번호(for문으로 돌리기)') as answerVariables
+                    where rc.openCourse_seq = '해당개설과정 번호(for문으로 돌리기)') as 평가답변개수
                         from tblteacher t
                             inner join tblteachercourse tc
                                 on t.teacher_seq = tc.teacher_seq
@@ -66,14 +66,14 @@ select rownum, c.name as courseName, t.name as teacherName,
 
 -- 1. 관리자 – 6. 교사 평가 관리 및 결과 조회 - c. 교사 평가 결과 조회 및 삭제 – 1.(상세보기), 개설과정번호 받음
 -- a. 과정명
-SELECT c.name as courseName
+SELECT c.name
     FROM tblOpenCourse oc
         INNER JOIN tblCourse c
             ON oc.course_seq = c.course_seq
                 WHERE oc.openCourse_seq = '받은 개설과정번호';
 
 -- b. 교사명
-SELECT t.name as teacherName
+SELECT t.name
     FROM tblOpenCourse oc
         INNER JOIN tblCourse c
             ON oc.course_seq = c.course_seq
@@ -87,14 +87,14 @@ SELECT t.name as teacherName
 SELECT content FROM tblExample;
 
 -- c. 평가질문 
-SELECT teq.question as questionnaire
+SELECT teq.question
     FROM tblTeacherEval_Q teq
         WHERE teq.type_seq = 2;
 
 
 
 -- 평가비율 for문 번호 범위(for문으로 1부터 순서대로 돌릴지 나중을 생각해서 각 번호를 배열에 값을 입력하여 빼내올지 선택해야됨)
-SELECT COUNT(*) as numberExample FROM tblExample;
+SELECT COUNT(*) FROM tblExample;
 
 -- 평가 비율
 SELECT round((SELECT COUNT(*)
@@ -107,10 +107,8 @@ SELECT round((SELECT COUNT(*)
         FROM tblTeacherEval_A tea
             INNER JOIN tblRegiCourse rc
                 ON tea.regiCourse_seq = rc.regiCourse_seq
-                    where rc.openCourse_seq = '받은 개설과정번호'),3)*100 || '%' as ratio
+                    where rc.openCourse_seq = '받은 개설과정번호'),3)*100 || '%' as 비율
     FROM dual;
-
-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- 평가답변(개수), 혹시나 해서 남겨둠
 SELECT COUNT(*)
@@ -120,7 +118,7 @@ SELECT COUNT(*)
                 where rc.openCourse_seq = 2;
 
 -- 좋았던 점 아쉬운점,개선할점 출력
-SELECT rownum, question as questionnaire
+SELECT rownum as 번호, question as 주관식질문
     FROM tblTeacherEval_Q
         WHERE type_seq = 1;
 
@@ -136,7 +134,7 @@ SELECT question
         WHERE evalQ_seq = '받아온 문제번호';
 
 -- 번호, 내용 출력
-SELECT rownum, tea.subjective_A as contentsEvaluation
+SELECT rownum, tea.subjective_A
     FROM tblTeacherEval_A tea
         INNER JOIN tblTeacherEval_Q teq
             ON tea.evalQ_seq = teq.evalQ_seq

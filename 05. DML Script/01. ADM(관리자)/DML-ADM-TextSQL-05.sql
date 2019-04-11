@@ -1,5 +1,5 @@
 -- 1. 관리자 – 5. 출결 관리 및 출결조회 - a. 학생별 조회 및 수정
-SELECT rownum, s.name as studentName, s.pw as studentPw, c.name as courseName, oc.startDate || '~' || oc.endDate as courseDuration, r.roomName as className
+SELECT rownum as 번호, s.name as 학생명, s.pw as "주민번호(뒷자리)", c.name as 과정명, oc.startDate || '~' || oc.endDate as 과정기간, r.roomName as 강의실명 
     FROM tblStudent s
         INNER JOIN tblRegiCourse rc
             ON s.student_seq = rc.student_seq
@@ -12,7 +12,7 @@ SELECT rownum, s.name as studentName, s.pw as studentPw, c.name as courseName, o
                                         WHERE s.name = '입력받은 학생명';
 
 -- 학생번호 변수에 저장
-SELECT s.student_seq as studentNumber
+SELECT s.student_seq
     FROM tblStudent s
         INNER JOIN tblRegiCourse rc
             ON s.student_seq = rc.student_seq
@@ -33,14 +33,14 @@ SELECT name
         WHERE student_seq = '받아온 학생번호';
 
 -- 날짜, 출근시간, 퇴근시간, 근태상황
-SELECT am.attendDate as attendanceDay, to_char(am.workOn, 'hh24:mi') as commuteTime, to_char(am.workOff, 'hh24:mi') as quittingTime, am.state as attendanceSituation
+SELECT am.attendDate as 날짜, to_char(am.workOn, 'hh24:mi') as 출근시간, to_char(am.workOff, 'hh24:mi') as 퇴근시간, am.state as 근태상황
     FROM tblAttendanceMgmt am
         INNER JOIN tblRegiCourse rc
             ON am.regiCourse_seq = rc.regiCourse_seq
                 WHERE rc.student_seq = '받아온 학생번호' AND attendDate BETWEEN to_date('받아온 시작일','yyyy-mm-dd') AND to_date('받아온 종료일','yyyy-mm-dd');
 
 --입력받은 학생 번호의 수강신청 번호(자바 변수에 저장)
-SELECT rc.regiCourse_seq as enrollmentNumbers
+SELECT rc.regiCourse_seq
     FROM tblStudent s
         INNER JOIN tblRegiCourse rc
             ON s.student_seq = rc.student_seq
@@ -60,7 +60,7 @@ UPDATE tblattendancemgmt
 
 -- 1. 관리자 – 5. 출결 관리 및 출결조회 - b. 과정별 조회
 -- a. 과정번호 과정명 과정기간 교사명 강의실(개설과정번호,조회기간 입력받아 넘겨줌)
-select rownum, c.name as courseName, oc.startdate || ' ~ ' || oc.enddate as courseDuration, t.name as teacherName, r.roomname as className 
+select oc.course_seq, c.name, oc.startdate || ' ~ ' || oc.enddate as 과정기간, t.name, r.roomname 
     from tblopencourse oc
         inner join tblteachercourse tc
             on tc.opencourse_seq = oc.opencourse_seq
@@ -73,7 +73,7 @@ select rownum, c.name as courseName, oc.startdate || ' ~ ' || oc.enddate as cour
 
 
 --과정번호 입력을 위해 저장할 개설과정번호(자바에 저장)
-select oc.course_seq as openingCourseNumber
+select oc.course_seq
     from tblopencourse oc
         inner join tblteachercourse tc
             on tc.opencourse_seq = oc.opencourse_seq
@@ -88,8 +88,8 @@ select oc.course_seq as openingCourseNumber
 
 
 --입력받은 날짜에 대한 출결 정보
---학번 학생명 출근시간 퇴근시간 근태상황(수정에서 학생이름은 겹칠 수 있기때문에 학생번호로 바꿔야됨)
-select  rownum, s.name as studentName, to_char(admg.workon, 'hh24:mm') as commuteTime, to_char(admg.workoff, 'hh24:mm') as quittingTime, admg.state as attendanceSituation
+--학생명 학번 출근시간 퇴근시간 근태상황(수정에서 학생이름은 겹칠 수 있기때문에 학생번호로 바꿔야됨)
+select s.name, s.student_seq, to_char(admg.workon, 'hh24:mm'), to_char(admg.workoff, 'hh24:mm'), admg.state, s.student_seq
     from tblstudent s
         inner join tblregicourse rc
             on s.student_seq = rc.student_seq
@@ -102,7 +102,7 @@ select  rownum, s.name as studentName, to_char(admg.workon, 'hh24:mm') as commut
  
 
 --입력받은 학생번호(자바 변수에 저장)
-select s.student_seq as stdentNumber
+select s.student_seq
     from tblstudent s
         inner join tblregicourse rc
             on s.student_seq = rc.student_seq
@@ -114,7 +114,7 @@ select s.student_seq as stdentNumber
                                     and admg.attendDate = to_date('2019-04-17','입력받은 조회날짜');
 
 --입력받은 학생 번호의 수강신청 번호(자바 변수에 저장)
-SELECT rc.regiCourse_seq as enrollmentNumbers
+SELECT rc.regiCourse_seq
     FROM tblStudent s
         INNER JOIN tblRegiCourse rc
             ON s.student_seq = rc.student_seq
