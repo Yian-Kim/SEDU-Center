@@ -7,6 +7,7 @@ public class DTO_Student {
 	private String pw; // 학생 주민
 	private String tel; // 학생 전화번호
 	private String regiDate; // 학생 등록일
+	private String numberCourseRequests; //수강신청횟수
 	private String major; // 학생 전공
 	               
 	public String getStudent_seq() {
@@ -44,6 +45,12 @@ public class DTO_Student {
 	}
 	public void setMajor(String major) {
 		this.major = major;
+	}
+	public String getNumberCourseRequests() {
+		return numberCourseRequests;
+	}
+	public void setNumberCourseRequests(String numberCourseRequests) {
+		this.numberCourseRequests = numberCourseRequests;
 	}
 	
 	
