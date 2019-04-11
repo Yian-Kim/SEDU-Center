@@ -7,7 +7,16 @@ public class DTO_OpenCourse {
 	private String endDate; // 과정 종료일
 	private String course_seq; // 과정번호(FK)
 	private String room_seq; // 방번호(FK)
+	private int numberOpenCourse; // 개설과정 개수
 	
+	
+	
+	public int getNumberOpenCourse() {
+		return numberOpenCourse;
+	}
+	public void setNumberOpenCourse(int numberOpenCourse) {
+		this.numberOpenCourse = numberOpenCourse;
+	}
 	public String getOpenCourse_seq() {
 		return openCourse_seq;
 	}
