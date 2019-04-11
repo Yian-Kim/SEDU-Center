@@ -54,7 +54,7 @@ DELETE FROM tblRoom WHERE room_seq = '조건번호';
 
 -- 교사 정보(for문 사용해서 출력)
 -- a. 교사번호(출력할 떄는 앞에 구분자 넣을 예정)
-SELECT teacher_seq,name, pw, tel,(SELECT LISTAGG(s.name, ',') WITHIN GROUP (ORDER BY s.name)
+SELECT teacher_seq,name, pw, tel,(SELECT LISTAGG(s.name, ',') WITHIN GROUP (ORDER BY s.name) as tAvlSubject
     FROM tblTeacher t
         INNER JOIN tblAvlSubject a
             ON t.teacher_seq = a.teacher_seq 
@@ -69,7 +69,7 @@ SELECT teacher_seq,name, pw, tel,(SELECT LISTAGG(s.name, ',') WITHIN GROUP (ORDE
 SELECT name FROM tblTeacher WEHRE teacher_seq = '입력받아온번호';
 
 -- b. 과정명(받아온 시퀀스번호를 토대로..)
-SELECT c.name
+SELECT c.name as courseName
     FROM tblTeacher t
         INNER JOIN tblTeacherCourse tc
             ON t.teacher_seq = tc.teacher_seq
@@ -80,7 +80,7 @@ SELECT c.name
                                 WHERE t.teacher_seq = '입력받아온 번호';
 
 -- c. 과정기간(받아온 시퀀스번호를 토대로..)
-SELECT oc.startDate || '~' || oc.endDate
+SELECT oc.startDate || '~' || oc.endDate as courseDuration
     FROM tblTeacher t
         INNER JOIN tblTeacherCourse tc
             ON t.teacher_seq = tc.teacher_seq
@@ -89,7 +89,7 @@ SELECT oc.startDate || '~' || oc.endDate
                         WHERE t.teacher_seq = '입력받아온 번호';
                         
 -- d. 과목명 및 기간(각 과정마다 나누는기준이 있어야됨,받아온 시퀀스번호를 토대로..)
-SELECT s.name, s.period
+SELECT s.name as subjectNaem, s.period as subjectDuration
     FROM tblTeacher t
         INNER JOIN tblAvlSubject a
             ON t.teacher_seq = a.teacher_seq
@@ -98,7 +98,7 @@ SELECT s.name, s.period
                         WHERE t.teacher_seq = '입력받아온번호';
         
 -- e. 강의실명(받아온 시퀀스번호를 토대로..)
-SELECT r.roomName
+SELECT r.roomName as className
     FROM tblTeacher t
         INNER JOIN tblTeacherCourse tc
             ON t.teacher_seq = tc.teacher_seq
@@ -115,7 +115,7 @@ SELECT
         WHEN sysdate between to_date(oc.startDate, 'yyyy-mm-dd') and to_date(oc.endDate) then '강의중'
         WHEN sysdate < to_date(oc.startDate, 'yyyy-mm-dd') then '강의예정'
         WHEN sysdate > to_date(oc.endDate, 'yyyy-mm-dd') then '강의종료'
-    END
+    END as courseProgressStatus
         FROM tblTeacher t
             INNER JOIN tblTeacherCourse tc
                 ON t.teacher_seq = tc.teacher_seq
@@ -124,7 +124,7 @@ SELECT
                             WHERE t.teacher_seq = 1;
 
 -- 과정명 과정기간 교사명 강의실
-SELECT c.name, oc.startDate, oc.endDate, t.name, r.roomName
+SELECT c.name as courseName, oc.startDate || '~' || oc.endDate as courseDuration, t.name as teacherNaem, r.roomName as className
     FROM tblCourse c
         INNER JOIN tblOpenCourse oc
             ON c.course_seq = oc.course_seq
@@ -157,17 +157,17 @@ INSERT tblAvlSubject (avlSubject_seq, teacher_seq, subject_seq)
 
 -- 1. 관리자 - 1. 교사 계정 관리 -b. 교사 정보 수정(넘어가는 값은 해당 교사번호)
 -- a. 교사명
-SELECT name,pw, tel, (SELECT LISTAGG(s.name, ',') WITHIN GROUP (ORDER BY s.name)
+SELECT name, pw, tel, (SELECT LISTAGG(s.name, ',') WITHIN GROUP (ORDER BY s.name)
     FROM tblTeacher t
         INNER JOIN tblAvlSubject a
             ON t.teacher_seq = a.teacher_seq
                     INNER JOIN tblSubject s
                         ON a.subject_seq = s.subject_seq
-                            WHERE t.teacher_seq = '받아온 번호')
+                            WHERE t.teacher_seq = '받아온 번호') as tAvlSubject
                                 FROM tblTeacher WHERE teacher_seq = '받아온 번호';
 
 -- 교사명과 주민번호 유효성검사(교사명과 주민번호 동시에 같은 데이터가 있을 경우에는 데이터가 들어가면 안됨!)
-SELECT COUNT(*) FROM tblTeacher WHERE name = '입력받은교사명' and pw = '입력받은주민번호(뒷자리)'; -- 1이상이면 불가능하게
+SELECT COUNT(*) as numberTeachers FROM tblTeacher WHERE name = '입력받은교사명' and pw = '입력받은주민번호(뒷자리)'; -- 1이상이면 불가능하게
 
 -- 교사명, 주민번호, 전화번호 입력 받고, 해당 교사가 강의가능한 과목 번호들을 선택함, 가능과목 수만큼 반복해야됨
 UPDATE tblTeacher 
@@ -189,7 +189,7 @@ SELECT name,pw, tel, (SELECT LISTAGG(s.name, ',') WITHIN GROUP (ORDER BY s.name)
             ON t.teacher_seq = a.teacher_seq
                     INNER JOIN tblSubject s
                         ON a.subject_seq = s.subject_seq
-                            WHERE t.teacher_seq = 1)
+                            WHERE t.teacher_seq = 1) as tAvlSubject
                                 FROM tblTeacher 
                                     WHERE teacher_seq = 1;
 

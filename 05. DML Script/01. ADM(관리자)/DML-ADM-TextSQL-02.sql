@@ -2,24 +2,24 @@
 
 -- 1. 관리자 – 2. 개설 과정 및 과목 관리(개설과정PK 번호 받아옴)
 
-SELECT rownum, c.name, oc.startDate || '~' || oc.endDate, r.roomName
+SELECT rownum, c.name as courseName, oc.startDate || '~' || oc.endDate as courseduration, r.roomName as className
     ,(SELECT count(*)
         FROM tblOpenCourse oc
             INNER JOIN tblOpenSubjectMgmt osm
                 ON oc.openCourse_seq = osm.openCourse_seq
-                    WHERE osm.openCourse_seq = 'for문으로 개설과정만큼 돌려야됨'),
+                    WHERE osm.openCourse_seq = 'for문으로 개설과정만큼 돌려야됨') as subjectRegistration,
                         (SELECT count(*)
                             FROM tblOpenCourse oc
                                 INNER JOIN tblRegiCourse rc
                                     ON oc.openCourse_seq = rc.openCourse_seq
                                         INNER JOIN tblStudent s
                                             ON s.student_seq = rc.student_seq
-                                                WHERE oc.openCourse_seq = 'for문으로 개설과정만큼 돌려야됨')
+                                                WHERE oc.openCourse_seq = 'for문으로 개설과정만큼 돌려야됨') as studentNum
                                                     FROM tblOpenCourse oc
                                                         INNER JOIN tblCourse c
                                                             ON oc.course_seq = c.course_seq
                                                                 INNER JOIN tblRoom r
-                                                                    ON oc.room_seq = r.room_seq;
+                                                                    ON oc.room_seq = r.room_seq;     
 
 -- for문 범위
 SELECT COUNT(*) FROM tblOpenCourse;
@@ -29,14 +29,14 @@ SELECT openCourse_seq FROM tblOpenCourse;
 
 -- 1. 관리자 – 2. 개설 과정 및 과목 관리– 1. (상세보기)
 -- a. 과정명
-SELECT c.name
+SELECT c.name as courseName
     FROM tblOpenCourse oc
         INNER JOIN tblCourse c
             ON oc.course_seq = c.course_seq
                 WHERE oc.openCourse_seq = '배열[받아온번호-1]';
 
 -- b. 교사명
-SELECT t.name
+SELECT t.name as teacherName
     FROM tblOpenCourse oc
         INNER JOIN tblTeacherCourse tc
             ON oc.openCourse_seq = tc.openCourse_seq
@@ -45,19 +45,19 @@ SELECT t.name
                         WHERE oc.openCourse_seq = '배열[받아온번호-1]';
 
 -- c. 강의실
-SELECT r.roomName
+SELECT r.roomName as className
     FROM tblOpenCourse oc
         INNER JOIN tblRoom r
             ON oc.room_seq = r.room_seq
                 WHERE oc.openCourse_seq = '배열[받아온번호-1]';
 
 -- d. 과정기간
-SELECT startDate || '~' || endDate
+SELECT startDate || '~' || endDate as courseDuration
     FROM tblOpenCourse
         WHERE openCourse_seq = '배열[받아온번호-1]';
 
 -- e. 과목명 및 기간
-SELECT s.name, s.period || '일'
+SELECT s.name as subjectName, s.period || '일' as subjectDuration
     FROM tblOpenCourse oc
         INNER JOIN tblOpenSubjectMgmt osm
             ON oc.openCourse_seq = osm.openCourse_seq
@@ -67,7 +67,7 @@ SELECT s.name, s.period || '일'
 
 
 -- f. 학생 정보
-SELECT s.name, s.pw, s.tel, s.regiDate, r.state
+SELECT s.name as studentName, s.pw as studentPw, s.tel as studentTel, s.regiDate as studentRegidate, r.state as completion
                         FROM tblOpenCourse oc
                             INNER JOIN tblRegiCourse rc
                                 ON oc.openCourse_seq = rc.openCourse_seq
@@ -79,7 +79,7 @@ SELECT s.name, s.pw, s.tel, s.regiDate, r.state
 
 
 -- 1. 관리자 – 2. 개설 과정 및 과목 관리– 1. (상세보기) - a. 개설과목 정보 등록(개설과정번호 받아옴, 배열[입력번호-1])
-SELECT s.subject_seq, s.name, s.period -- 과목번호는 삭제가 없기 때문에 그대로 가도됨!
+SELECT rownum, s.name as subjectName, s.period as subjectDuration-- 과목번호는 삭제가 없기 때문에 그대로 가도됨!
     FROM tblSubject s
         INNER JOIN tblOpenSubjectMgmt osm
             ON s.subject_seq = osm.subject_seq
@@ -93,7 +93,7 @@ SELECT sysdate FROM dual; -- 현재시간
 -- 조건(같은 과목 x), 배열에 저장
 SELECT subject_seq
     FROM tblOpenSubjectMgmt 
-        WHERE openCourse_seq = '배열[받아온번호-1];
+        WHERE openCourse_seq = '배열[받아온번호-1]';
         
 -- 위의 배열과 입력한 과목번호를 비교해서 있는 경우에는 등록 불가
 
@@ -102,7 +102,7 @@ INSERT INTO tblOpenSubjectMgmt
     VALUES(OpenSubjectMgmt_seq.nextval, 
         to_date((SELECT endDate
             FROM tblOpenCourse WHERE openCourse_seq = '배열[받아온번호 -1]'), 'yyyy-mm-dd')
-                , to_date('입력한 종료일', 'yyyy-mm-dd'), '입력한번호(과목번호)', '배열[받아온번호-1]);
+                , to_date('입력한 종료일', 'yyyy-mm-dd'), '입력한번호(과목번호)', '배열[받아온번호-1]');
 
 
 -- 1. 관리자 – 2. 개설 과정 및 과목 관리– a. 개설과정 정보 등록,  //강의실명을 입력받는게 아니라 강의실 번호를 입력받아야함
@@ -145,8 +145,9 @@ INSERT INTO tblOpenCourse
 
 
 
+
 -- a. 개설과정 출력
-SELECT oc.openCourse_seq, c.name, oc.startDate || '~' || oc.endDate, r.roomName, 
+SELECT oc.openCourse_seq as , c.name, oc.startDate || '~' || oc.endDate, r.roomName, 
     (SELECT COUNT(*)
         FROM tblOpenCourse oc
             INNER JOIN tblOpenSubjectMgmt osm
