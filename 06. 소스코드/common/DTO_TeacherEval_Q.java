@@ -1,6 +1,6 @@
 package common;
 
-public class TeacherEval_Q {
+public class DTO_TeacherEval_Q {
 
 	private String evalQ_seq; // 평가문제 번호(PK)
 	private String question; // 문제

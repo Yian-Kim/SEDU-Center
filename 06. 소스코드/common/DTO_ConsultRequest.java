@@ -1,6 +1,6 @@
 package common;
 
-public class ConsultRequest {
+public class DTO_ConsultRequest {
 
 	private String consult_seq; // 상담요청 번호(PK)
 	private String requestDate; // 요청날짜

@@ -1,6 +1,6 @@
 package common;
 
-public class Student {
+public class DTO_Student {
 
 	private String student_seq; // 학생번호(PK)
 	private String name; // 학생이름

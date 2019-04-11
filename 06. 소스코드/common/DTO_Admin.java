@@ -1,6 +1,6 @@
 package common;
 
-public class Admin {
+public class DTO_Admin {
 
 	private String admin_seq; // 관리자계정 번호(PK)
 	private String id; // 관리자 이름

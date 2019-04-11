@@ -1,6 +1,6 @@
 package common;
 
-public class AttendanceMgmt {
+public class DTO_AttendanceMgmt {
 
 	private String attendanceMgmt_seq; // 근태관리 번호(PK)
 	private String attendDate; // 근태 날짜

@@ -1,6 +1,6 @@
 package common;
 
-public class Course {
+public class DTO_Course {
 
 	private String course_seq; // 과정번호(PK)
 	private String name; // 과정이름

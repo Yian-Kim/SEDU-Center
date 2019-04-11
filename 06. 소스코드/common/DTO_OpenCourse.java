@@ -1,6 +1,6 @@
 package common;
 
-public class OpenCourse {
+public class DTO_OpenCourse {
 
 	private String openCourse_seq; // 개설과정 번호(PK)
 	private String startDate; // 과정 시작일

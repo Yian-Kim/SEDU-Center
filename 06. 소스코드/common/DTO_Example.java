@@ -1,6 +1,6 @@
 package common;
 
-public class Example {
+public class DTO_Example {
 
 	private String example_seq; // 보기 번호(PK)
 	private String content; // 보기 내용

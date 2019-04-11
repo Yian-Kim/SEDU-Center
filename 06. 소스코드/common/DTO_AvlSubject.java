@@ -1,6 +1,6 @@
 package common;
 
-public class AvlSubject {
+public class DTO_AvlSubject {
 
 	private String avlSubject_seq; // 교사가 강의가능과목 번호(PK)
 	private String teacher_seq; // 교사번호(FK)

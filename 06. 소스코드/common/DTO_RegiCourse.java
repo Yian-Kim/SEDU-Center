@@ -1,6 +1,6 @@
 package common;
 
-public class RegiCourse {
+public class DTO_RegiCourse {
 
 	private String regiCourse_seq; // 수강신청번호(PK)
 	private String student_seq; // 학생번호(FK)

@@ -1,6 +1,6 @@
 package common;
 
-public class Grade {
+public class DTO_Grade {
 
 	private String grade_seq; // 성적 번호(PK)
 	private String score; // 점수

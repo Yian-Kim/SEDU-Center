@@ -1,6 +1,6 @@
 package common;
 
-public class OpenSubjectMgmt {
+public class DTO_OpenSubjectMgmt {
 
 	private String openSubjectMgmt_seq; // 개설과목관리 번호(PK)
 	private String startDate; // 과목 시작일

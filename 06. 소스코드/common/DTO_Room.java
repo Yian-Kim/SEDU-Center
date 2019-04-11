@@ -1,6 +1,6 @@
 package common;
 
-public class Room {
+public class DTO_Room {
 
 	private String room_seq; // 강의실 번호(PK)
 	private String roomName; // 강의실명

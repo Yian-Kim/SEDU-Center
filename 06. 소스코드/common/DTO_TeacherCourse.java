@@ -1,6 +1,6 @@
 package common;
 
-public class TeacherCourse {
+public class DTO_TeacherCourse {
 
 	private String teacherCourse_seq; // 교사와 개설과정에 대한 번호시퀀스(PK)
 	private String openCourse_seq; // 개설과정번호(FK)

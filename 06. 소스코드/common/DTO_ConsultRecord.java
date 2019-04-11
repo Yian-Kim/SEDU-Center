@@ -1,6 +1,6 @@
 package common;
 
-public class ConsultRecord {
+public class DTO_ConsultRecord {
 
 	private String record_seq; // 상담일지 번호(PK)
 	private String recordDate; // 상담일시

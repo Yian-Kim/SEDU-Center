@@ -1,6 +1,6 @@
 package common;
 
-public class Result {
+public class DTO_Result {
 
 	private String result_seq; // 수료여부 번호(PK)
 	private String state; // 수료여부

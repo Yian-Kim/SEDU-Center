@@ -1,6 +1,6 @@
 package common;
 
-public class Subject {
+public class DTO_Subject {
 
 	private String subject_seq; // 과목번호(PK)
 	private String name; // 과목명
