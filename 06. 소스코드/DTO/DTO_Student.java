@@ -8,7 +8,16 @@ public class DTO_Student {
 	private String tel; // 학생 전화번호
 	private String regiDate; // 학생 등록일
 	private String major; // 학생 전공
+	private String numberStudent; // 학생수
+	
+	
 	               
+	public String getNumberStudent() {
+		return numberStudent;
+	}
+	public void setNumberStudent(String numberStudent) {
+		this.numberStudent = numberStudent;
+	}
 	public String getStudent_seq() {
 		return student_seq;
 	}
