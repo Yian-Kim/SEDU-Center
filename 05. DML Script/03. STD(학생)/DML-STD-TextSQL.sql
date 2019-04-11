@@ -16,9 +16,9 @@ select student_seq
 
 --①
 select 
-    s.student_seq as 학번, s.name as 학생명, 
-    c.name as 과정명, o.startdate as 시작일, o.enddate as 종료일, 
-    r.roomname as 강의실명, t.name as 선생님  
+    s.student_seq , s.name as sname, 
+    c.name as courseName, o.startdate as startDate, o.enddate as endDate, 
+    r.roomname as roomName, t.name as tname  
 from tblstudent s
     inner join tblRegiCourse regi 
         on s.student_seq = regi.student_seq
@@ -43,7 +43,8 @@ from tblstudent s
 --  -★☆★☆ 수정사항[성적 80% + 출결 20%] ★☆★☆
 -- 과목번호, 과목명, 과목시작일, 과목종료일, 교사명, 시험날짜, 시험, 출결, 총점 => 가상컬럼(SQL쿼리 추가필요)
 select 
-    sub.subject_seq, sub.name, os.startdate, os.enddate, t.name, g.score
+    sub.subject_seq  , sub.name as subjName, 
+    os.startdate, os.enddate, t.name as tname, g.score 
 from tblstudent s
     inner join tblRegiCourse regi --수강신청
         on s.student_seq = regi.student_seq
@@ -61,12 +62,10 @@ from tblstudent s
                                                             on sub.subject_seq = os.subject_seq
                                                                   inner join tblgrade g --성적
                                                                        on g.opensubjectmgmt_seq = os.opensubjectmgmt_seq
-                                                                          --  inner join tblattendancemgmt att
-                                                                            --   on att.regicourse_seq = regi.regicourse_seq
-                                                                                    where s.name = '강민혁';
+                                                                          where s.name = '강민혁';
 
 
-
+select * from tblattendancemgmt;
 
 -- ●4. 한 학생(강민혁학생)의 전체출결을 조회한다. 
 --  - 현재 3,4월달의 근태정보만 더미정보로 나타나있기 때문에 결과를 보여줄 때 전체인것처럼 잘 만들어서 보여줘야할듯 
@@ -88,7 +87,7 @@ from  tblstudent s
                 on o.opencourse_seq = regi.opencourse_seq
                     inner join tblattendancemgmt att
                         on att.regicourse_seq = regi.regicourse_seq
-                            where s.name = '강민혁'
+                            --where s.name = '강민혁' [지금 한명꺼밖에 안들어가있어서 이대로 조회해도 조회자체는 가능함]
                                 order by att.attenddate;
 /* 
   select 
@@ -116,7 +115,8 @@ from  tblstudent s
             inner join tblopencourse o
                 on o.opencourse_seq = regi.opencourse_seq
                     inner join tblattendancemgmt att
-                        on att.regicourse_seq = regi.regicourse_seq
+                        on att.regicourse_seq = regi.regicourse_seq;
+                        
                             where substr(att.attenddate,4,2)='입력한 숫자' ;
                             -- 숫자 입력 시, 1의 자리수 달은 03,04,...표기
                             -- 입력한 숫자의 경우 월을 의미함.
@@ -152,7 +152,7 @@ select * from tblattendancemgmt
 --   조건에 맞는 학생에 한하여 교사평가를 진행할 수 있다.(수료생)
 --   수료학생: 현재 DB상에 수료한 학생이 없음 => 따로 데이터 만들지 않고 컴퓨터 시간 조정으로 구현. ★★★
 --   수료학생이 아닌 경우 조회
-select s.name, c.name, o.enddate 
+select s.name as sname, c.name as courseName, o.enddate 
     from tblstudent s
         inner join tblregicourse regi
             on s.student_seq = regi.student_seq
@@ -168,7 +168,7 @@ select s.name, c.name, o.enddate
 --  2-2. 수료한 학생: 교사평가 가능   
 --"평가일시"의 경우 JAVA를 이용하여 입력한 날짜를 기록하도록 설정(응요프로그램에서 구현)
 --"과정명", "교사명" 출력을 위한 테이블 셀렉 [평과결과상단에 선출력될 정보]
-select s.name , c.name, t.name 
+select s.student_seq ,s.name as sname , c.name as courseName, t.name as tname 
     from tblstudent s --학생
         inner join tblregicourse regi --수강신청
             on s.student_seq = regi.student_seq
@@ -177,22 +177,21 @@ select s.name , c.name, t.name
                         inner join tblopencourse o --개설과정
                             on o.opencourse_seq = regi.opencourse_seq
                                 inner join tblcourse c --과정
-                                    on c.course_seq = o.course_seq
-                                    
+                                    on c.course_seq = o.course_seq           
                                         inner join tblteacherCourse tc
                                             on tc.opencourse_seq = o.opencourse_seq
                                                 inner join tblTeacher t
-                                                    on t.teacher_seq=tc.teacher_seq  
+                                                    on t.teacher_seq=tc.teacher_seq 
                                                         where s.name = '강민혁'
                                                            and sysdate < o.enddate ;
                                                            
 
 -- ⓐ객관식
---   ⓐ-1 : 객관식 문제의 보기 출력
+--  객관식 문제의 보기 출력
 select * from tblExample;
 
 
---   ⓐ-2 : 객관식 문제 & 답변 결과 출력  
+-- 객관식 문제 & 답변 결과 출력  
 select teq.evalq_seq,teq.question, tea.objective_a, ex.content
     from tblstudent s --학생
         inner join tblregicourse regi --수강신청
@@ -209,11 +208,12 @@ select teq.evalq_seq,teq.question, tea.objective_a, ex.content
                                                     on teq.evalQ_seq = tea.evalQ_seq
                                                         inner join tblExample ex --보기
                                                             on ex.example_seq = tea.objective_a
-                                                        where TEA.objective_A is not null
-                                                        order by  tea.evalq_seq;
+                                                              where TEA.objective_A is not null 
+                                                                 order by  tea.evalq_seq;
                                             
 -- ⓑ주관식
-select teq.evalq_seq, teq.question,tea.subjective_a
+-- 주관식 문제 & 답변 결과 출력  
+select teq.evalq_seq, teq.question, tea.subjective_a
     from tblstudent s --학생
         inner join tblregicourse regi --수강신청
             on s.student_seq = regi.student_seq
@@ -244,7 +244,7 @@ INSERT INTO tblTeacherEval_A (evalA_seq, subjective_A,objective_A, evalQ_seq, re
                                                               
 --●8. 상담신청
 -- - 예) 이다현 학생의 담당교사는 박세인 교사로 결정되어 있으므로 상담 신청 시 자동적으로 박세인 교사로 신청접수된다.
-select s.student_seq, s.name, cr.requestDate, cr.requestcontent 
+select s.student_seq, s.name as sname, cr.requestDate, cr.requestcontent 
 from tblstudent s
     inner join tblregicourse regi
         on s.student_seq = regi.student_seq
@@ -263,7 +263,7 @@ from tblstudent s
 --●9. 상담일지조회
 --  - 상담이 완료된 상담내역에 대해 학생이 조회할 수 있다.
 --  ⓐ 상담을 시행한 교사 + 과정!
-select regi.student_seq, s.name, c.name, t.name
+select regi.student_seq, s.name as sname, c.name as courseName, t.name as tname
 from  tblRegiCourse regi
     inner join tblOpenCourse o
         on o.opencourse_seq = regi.openCourse_seq
@@ -276,9 +276,9 @@ from  tblRegiCourse regi
                                     inner join tblstudent s
                                         on s.student_seq = regi.student_seq;
 
---  ⓑ 상담요청에 따른 일지조회
+--  ⓑ 상담이후 작성된 일지 조회 
 select 
-    s.student_seq, s.name, creq.requestdate, crd.recorddate,
+    s.student_seq, s.name as sname, creq.requestdate, crd.recorddate,
     creq.requestcontent, crd.recordcontent   
 from tblstudent s --학생
     inner join tblregicourse regi   --수강신청
@@ -298,7 +298,7 @@ from tblstudent s --학생
         on regi.student_seq = s.student_seq;
         
  --수강중인 과정, 담당교사, 강의실정보
- select c.name, t.name, r.roomname
+ select c.name as courseName, t.name as tname, r.roomname
  from tblOpenCourse o
     inner join tblcourse c
         on c.course_seq= o.course_seq
@@ -310,7 +310,7 @@ from tblstudent s --학생
                                 on t.teacher_seq = tc.teacher_seq;
  
  --과목정보 : 과목번호, 과목명, 과목시작 및 종료일
- select c.course_seq, c.name,  s.subject_seq,s.name, os.startdate, os.enddate 
+ select s.subject_seq, s.name as subjName, os.startdate, os.enddate 
  from tblcourse c
     inner join tblopencourse o
         on c.course_seq = o.course_seq
@@ -318,7 +318,13 @@ from tblstudent s --학생
                 on  o.opencourse_seq = os.opencourse_seq
                     inner join tblSubject s
                         on s.subject_seq=os.subject_seq
+                            where
                             order by c.course_seq,  s.subject_seq;
+ 
+ 
+ 
+
+---[입력]---------------------------------------------------------------------------- 
  
  
  
