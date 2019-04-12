@@ -13,7 +13,7 @@
 
  */
 
-package DTO;
+package Teacher;
 
 public class DTO_EvalObjective_T {
 

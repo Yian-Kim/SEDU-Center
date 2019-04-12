@@ -1,4 +1,4 @@
-package admin2_6_7;
+package Admin;
 
 public class DTO_Teachereval_aTeachereval_q_A {
 

@@ -10,7 +10,7 @@
  */
 
 // 1,2번
-package DTO;
+package Teacher;
 
 public class DTO_SubjectForGrade_T {
 

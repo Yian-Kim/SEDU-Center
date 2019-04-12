@@ -1,4 +1,4 @@
-package admin2_6_7;
+package Admin;
 
 public class DTO_OpenCourseRoom_A {
 

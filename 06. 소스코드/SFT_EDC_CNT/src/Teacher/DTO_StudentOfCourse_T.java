@@ -9,7 +9,7 @@
 
  */
 
-package DTO;
+package Teacher;
 
 public class DTO_StudentOfCourse_T {
 
