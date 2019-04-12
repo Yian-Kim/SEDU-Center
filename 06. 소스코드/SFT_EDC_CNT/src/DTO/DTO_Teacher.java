@@ -6,6 +6,8 @@ public class DTO_Teacher {
 	private String name; // 교사 이름
 	private String pw; // 교사 주민
 	private String tel; // 교사 전화번호
+	private String tAvlSubject;//교사 가능강의과목
+
 	
 	public String getTeacher_Seq() {
 		return teacher_Seq;
@@ -30,6 +32,12 @@ public class DTO_Teacher {
 	}
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+	public String gettAvlSubject() {
+		return tAvlSubject;
+	}
+	public void settAvlSubject(String tAvlSubject) {
+		this.tAvlSubject = tAvlSubject;
 	}
 	
 	
