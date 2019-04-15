@@ -4,10 +4,17 @@ import java.util.Scanner;
 
 public class View {
 
-	public final static int Menu = 0;
-	public final static int Schedule = 1;
-	public final static int StudentInfo = 2;
-
+	public final static int menu = 0;
+	public final static int schedule = 1;
+	public final static int studentInfo = 2;
+	public final static int gradeInputOutput = 3;
+	public final static int gradeInput = 4;
+	public final static int gradeOutput = 5;
+	public final static int attendanceMGMT = 6;
+	public final static int attendanceOutput = 7;
+	public final static int attendanceInput = 8;
+	
+	
 
 	public void teacherMenu() { // 프로그램 시작, 교사메뉴
 		System.out.println("\t------------------");
@@ -27,13 +34,24 @@ public class View {
 
 	public void title(int n) { // 타이틀 출력
 		
-		if (n == View.Menu) {
+		if (n == View.menu) {
 			System.out.println("\t◆ 교사 메뉴 ◆");
-		} else if (n == View.Schedule) {
+		} else if (n == View.schedule) {
 			System.out.println("\t\t◆ 강의스케줄 조회 ◆");
-		} else if (n == View.StudentInfo) {
+		} else if (n == View.studentInfo) {
 			System.out.println("\t\t◆ 학생정보 조회 ◆");
-
+		} else if (n == View.gradeInputOutput) {
+			System.out.println("\t\t◆ 성적입력 및 조회 ◆");
+		} else if (n == View.gradeInput) {
+			System.out.println("\t\t◆ 성적입력 ◆");
+		} else if (n == View.gradeOutput) {
+			System.out.println("\t\t◆ 성적조회 ◆");
+		} else if (n == View.attendanceMGMT) {
+			System.out.println("\t\t◆ 출결관리 및 조회 ◆");
+		} else if (n == View.attendanceOutput) {
+			System.out.println("\t\t◆ 출결조회 ◆");
+		} else if (n == View.attendanceInput) {
+			System.out.println("\t\t◆ 출결입력 ◆");
 		}
 
 		
