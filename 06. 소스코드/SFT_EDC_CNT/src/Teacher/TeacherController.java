@@ -25,7 +25,7 @@ public class TeacherController {
 
 	public static void start() throws InterruptedException {
 		
-		view.title(View.Menu); // 타이틀 출력
+		view.title(View.menu); // 타이틀 출력
 		view.teacherMenu(); // 교사 메뉴 출력
 		
 		String menu = scan.nextLine();
@@ -39,7 +39,7 @@ public class TeacherController {
 					break;
 				case "2" : // 성적 입출력
 					view.pause();
-					service.gradeOuput();
+					service.gradeInputOuput();
 					break;
 				case "3" : // 출결관리 및 조회
 					view.pause();
