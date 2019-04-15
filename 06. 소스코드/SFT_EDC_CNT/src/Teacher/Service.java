@@ -514,6 +514,33 @@ public class Service implements IService {
 
 	}
 
+	@Override
+	public void attendanceOutput(int flag) throws InterruptedException {
+		
+		view.title(View.attendanceOutput); // 출결조회
+		
+		if (flag == 3) { // 전체  학생 기간 조회
+			
+			System.out.println("\t\t-전체 기간 조회 -");
+			System.out.println();
+			System.out.println("학번\t이름\t"); // 수정중
+			
+			
+		} else if (flag == 4) { // 전체 학생 특정 날짜 조회
+
+			System.out.println("\t\t-전체 날짜 조회 -");
+			
+		} else if (flag == 5) { // 개인 기간 조회
+			
+			System.out.println("\t\t-개인 기간 조회 -");
+			
+		} else if (flag == 6) { // 개인 특정 날짜 조회
+			
+			System.out.println("\t\t-개인 날짜 조회 -");
+			
+		}
+		
+	}
 	
 	@Override
 	public void teacherEvaluation() {
