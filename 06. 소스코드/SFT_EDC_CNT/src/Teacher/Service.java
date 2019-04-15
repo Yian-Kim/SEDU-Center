@@ -271,68 +271,7 @@ public class Service implements IService {
 		System.out.println("------------------------");
 		System.out.println("[  ] 안의 번호를 입력해주세요.");
 		System.out.println();
-		
-		if (flag == 1) {
-			System.out.println("[1] 다음 >>");
-			System.out.println("[2] 점수입력");
-			System.out.println("[#] 과목목록으로 돌아가기");
-			System.out.println("[0] 교사 메뉴로 돌아가기");
-		} else if (flag == 2) {
-			System.out.println("[1] 다음 >>");
-			System.out.println("[2] 점수입력");
-			System.out.println("[3] << 이전");
-			System.out.println("[#] 과목목록으로 돌아가기");
-			System.out.println("[0] 교사 메뉴로 돌아가기");
-		} else if (flag == 3) {
-			System.out.println("[2] 점수입력");
-			System.out.println("[3] << 이전");
-			System.out.println("[#] 과목목록으로 돌아가기");
-			System.out.println("[0] 교사 메뉴로 돌아가기");
-		}
 
-		System.out.println("------------------------");
-		System.out.print("번호 : ");
-		String select = scan.nextLine(); // 선택 번호 입력
-		view.pause();
-
-		switch (select) {
-
-		case "1": // 더보기
-			flag++;
-			gradeOutput();
-			break;
-
-		case "2": // 점수입력
-			gradeInput();
-			view.pause();
-			break;
-			
-		case "3" : // 이전으로 돌아가기
-			flag--;
-			gradeOutput();
-			break;
-			
-		case "#" : // 과목목록으로 돌아가기
-			flag = 1;
-			gradeInputOuput();
-			break;
-			
-		case "0": // 교사 메뉴로 돌아가기
-			flag = 0;
-			TeacherController.start();
-			break;
-		}
-	}
-	
-	
-// ----------------------------------------------------------------------
-//		[2] 성적 입출력 - (3) 성적입력
-// ----------------------------------------------------------------------
-
-		
-	@Override
-	public void gradeInput() throws InterruptedException { //  성적조회
-		
 		view.title(View.gradeInput);
 		
 		System.out.println();
@@ -377,12 +316,13 @@ public class Service implements IService {
 		view.pause();
 		gradeOutput();
 	}
+	
+	
+// ----------------------------------------------------------------------
+//		[3] 출결관리 및 조회 - (3) 성적입력
+// ----------------------------------------------------------------------
 
-	@Override
-	public void attendanceMGMT() {
-		// TODO Auto-generated method stub
-
-	}
+			
 
 	@Override
 	public void teacherEvaluation() {
@@ -395,6 +335,8 @@ public class Service implements IService {
 		// TODO Auto-generated method stub
 
 	}
+
+
 
 
 

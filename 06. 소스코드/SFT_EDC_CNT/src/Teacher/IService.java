@@ -12,11 +12,15 @@ public interface IService {
 	
 	void gradeOutput() throws InterruptedException; // 성적 조회
 
-	void attendanceMGMT(); // 출결관리 및 조회
+	void attendanceMGMT() throws InterruptedException; // 출결관리 및 조회
 
+	void attendanceOutput(int flag) throws InterruptedException; // 출결조회
+	
 	void teacherEvaluation(); // 교사평가 조회
 
 	void teacherConsult(); // 상담일지 입력 및 조회
+
+	
 	
 	
 

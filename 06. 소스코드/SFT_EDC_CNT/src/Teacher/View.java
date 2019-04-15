@@ -37,11 +37,7 @@ public class View {
 		} else if (n == View.studentInfo) {
 			System.out.println("\t\t◆ 학생정보 조회 ◆");
 		} else if (n == View.gradeInputOutput) {
-			System.out.println("\t\t◆ 성적 입력 및 조회 ◆");
-		} else if (n == View.gradeInput) {
-			System.out.println("\t\t◆ 성적 입력 ◆");
-		} else if (n == View.gradeOutput) {
-			System.out.println("\t\t◆ 성적 조회 ◆");
+
 		}
 
 		
