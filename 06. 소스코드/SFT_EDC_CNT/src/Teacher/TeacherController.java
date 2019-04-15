@@ -1,4 +1,4 @@
-package Teacher;
+﻿package Teacher;
 
 import java.util.Scanner;
 
@@ -20,7 +20,9 @@ public class TeacherController {
 	}
 	
 	public static void main(String[] args) throws InterruptedException {
-		start(); // 추후 취합 시 지워야 할 부분 
+		Login_T login = new Login_T();
+		login.login();
+		//start(); // 추후 취합 시 지워야 할 부분 
 	}
 
 	public static void start() throws InterruptedException {
