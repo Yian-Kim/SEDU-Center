@@ -20,14 +20,14 @@ URL Link : https://github.com/xxHANIxx/SFT_EDC_CNT
 -- 01. 상담요청 더미데이터
 ------------------------------------------------------------------------------------------------------------------------------
 
-INSERT INTO tblConsultRequest (consult_seq, requestDate, requestContent, regiCourse_seq)
-    VALUES (ConsultRequest_seq.nextVal, to_date('2018/11/20','yyyy-mm-dd'), '개발자의 삶... 전망이 어떤가요', 1);
+INSERT INTO tblConsultRequest (consult_seq, requestDate, requestContent, regiCourse_seq, consultfin)
+    VALUES (ConsultRequest_seq.nextVal, to_date('2018/11/20','yyyy-mm-dd'), '개발자의 삶... 전망이 어떤가요', 1, 'y');
 
-INSERT INTO tblConsultRequest (consult_seq, requestDate, requestContent, regiCourse_seq)
-    VALUES (ConsultRequest_seq.nextVal, to_date('2019/01/25','yyyy-mm-dd'), '수업을 따라가기 힘들어요', 1);
+INSERT INTO tblConsultRequest (consult_seq, requestDate, requestContent, regiCourse_seq, consultfin)
+    VALUES (ConsultRequest_seq.nextVal, to_date('2019/01/25','yyyy-mm-dd'), '수업을 따라가기 힘들어요', 1, 'y');
 
-INSERT INTO tblConsultRequest (consult_seq, requestDate, requestContent, regiCourse_seq)
-    VALUES (ConsultRequest_seq.nextVal, to_date('2019/3/26','yyyy-mm-dd'), '정보처리기사이외에 자격증 따로 준비해야할까요?', 1);
+INSERT INTO tblConsultRequest (consult_seq, requestDate, requestContent, regiCourse_seq, consultfin)
+    VALUES (ConsultRequest_seq.nextVal, to_date('2019/3/26','yyyy-mm-dd'), '정보처리기사이외에 자격증 따로 준비해야할까요?', 1, 'y');
 
 
 ------------------------------------------------------------------------------------------------------------------------------

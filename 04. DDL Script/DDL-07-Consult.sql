@@ -23,7 +23,8 @@ CREATE TABLE tblConsultRequest -- 상담요청
     consult_seq NUMBER PRIMARY KEY, -- 번호(PK)
     requestDate DATE NOT NULL, --요청날짜
     requestContent VARCHAR2(900), -- 요청내용
-    regiCourse_seq NUMBER REFERENCES tblRegiCourse(regiCourse_seq) NOT NULL -- 수강신청번호(FK)
+    regiCourse_seq NUMBER REFERENCES tblRegiCourse(regiCourse_seq) NOT NULL, -- 수강신청번호(FK)
+    consultfin VARCHAR2(20) DEFAULT 'n' -- 상담 완료 여부
 );
 
 CREATE SEQUENCE ConsultRequest_seq;
