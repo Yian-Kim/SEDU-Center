@@ -1,4 +1,4 @@
-package common;
+package DTO;
 
 public class DTO_AvlSubject {
 

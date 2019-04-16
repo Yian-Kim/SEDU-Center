@@ -1,6 +1,6 @@
 /*
 
-상담일지 조회 #1
+상담일지 조회 #2
 
 학생 테이블 : tblStudent
 수강신청 테이블 : tblRegiCourse
@@ -8,18 +8,21 @@
 개설과정 테이블 : tblOpenCourse
 담당과정 테이블 : tblTeacherCourse
 교사 테이블 : tblTeacher
+상담일지 테이블 : tblConsultRecord
 
  */
 
-package DTO;
 
-public class DTO_Consult_T {
+package Teacher;
+
+public class DTO_ConsultFinish_T {
 
 	private String student_seq; // 학생번호
 	private String studentName; // 학생명
-	private String major; // 학과(전공)
-	private String requestDate; // 요청날짜
-	private String requestContent; // 요청내용
+	private String recordDate; // 상담일시
+	private String recordContent; // 상담내용
+	private String consult_seq; // 상담요청번호
+	private String requestContent; // 상담요청내용
 	
 	public String getStudent_seq() {
 		return student_seq;
@@ -33,17 +36,23 @@ public class DTO_Consult_T {
 	public void setStudentName(String studentName) {
 		this.studentName = studentName;
 	}
-	public String getMajor() {
-		return major;
+	public String getRecordDate() {
+		return recordDate;
 	}
-	public void setMajor(String major) {
-		this.major = major;
+	public void setRecordDate(String recordDate) {
+		this.recordDate = recordDate;
 	}
-	public String getRequestDate() {
-		return requestDate;
+	public String getRecordContent() {
+		return recordContent;
 	}
-	public void setRequestDate(String requestDate) {
-		this.requestDate = requestDate;
+	public void setRecordContent(String recordContent) {
+		this.recordContent = recordContent;
+	}
+	public String getConsult_seq() {
+		return consult_seq;
+	}
+	public void setConsult_seq(String consult_seq) {
+		this.consult_seq = consult_seq;
 	}
 	public String getRequestContent() {
 		return requestContent;
@@ -52,5 +61,5 @@ public class DTO_Consult_T {
 		this.requestContent = requestContent;
 	}
 	
-	
+
 }

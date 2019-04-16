@@ -12,7 +12,7 @@
 
  */
 
-package DTO;
+package Teacher;
 
 public class DTO_EvalSubjective_T {
 	

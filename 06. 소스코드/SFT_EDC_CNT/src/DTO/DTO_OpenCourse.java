@@ -1,4 +1,4 @@
-package common;
+package DTO;
 
 public class DTO_OpenCourse {
 
@@ -8,9 +8,16 @@ public class DTO_OpenCourse {
 	private String course_seq; // 과정번호(FK)
 	private String room_seq; // 방번호(FK)
 	private int numberOpenCourse; // 개설과정 개수
+	private String timeIf; // 개설과정 등록 시간조건(등록일이 미래여야 등록 가능
 	
 	
 	
+	public String getTimeIf() {
+		return timeIf;
+	}
+	public void setTimeIf(String timeIf) {
+		this.timeIf = timeIf;
+	}
 	public int getNumberOpenCourse() {
 		return numberOpenCourse;
 	}

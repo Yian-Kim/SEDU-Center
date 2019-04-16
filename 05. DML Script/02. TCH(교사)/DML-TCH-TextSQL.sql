@@ -91,8 +91,10 @@ select s.name, s.student_seq, s.tel, s.major, c.name from tblOpenCourse oc --개
         inner join tblRegiCourse rg --수강신청 테이블
             on rg.openCourse_seq = oc.openCourse_seq
                 inner join tblStudent s --학생 테이블
-                    on s.student_seq = rg.student_seq;
-                        --where t.teacher_seq = 현재 로그인 된 교사 번호 변수
+                    on s.student_seq = rg.student_seq
+                        inner join tblTeacherCourse tc
+                            on tc.openCourse_seq = oc.opencourse_seq;
+                        --where tc.teacher_seq = 현재 로그인 된 교사 번호 변수
                         --and oc.opencourse_seq = 현재 로그인 된 교사의 현재 과정 번호 변수
             
 
