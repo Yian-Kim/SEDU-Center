@@ -411,7 +411,7 @@ public class Service implements IService {
 	
 	
 // ----------------------------------------------------------------------
-//		[3] 출결관리 및 조회 - (3) 성적입력
+//		[3] 출결관리 및 조회
 // ----------------------------------------------------------------------
 
 			
@@ -513,7 +513,7 @@ public class Service implements IService {
 		view.pause();
 
 	}
-	
+
 	@Override
 	public void attendanceOutput(int flag) throws InterruptedException {
 		
@@ -541,7 +541,7 @@ public class Service implements IService {
 		}
 		
 	}
-
+	
 	@Override
 	public void teacherEvaluation() {
 		// TODO Auto-generated method stub
