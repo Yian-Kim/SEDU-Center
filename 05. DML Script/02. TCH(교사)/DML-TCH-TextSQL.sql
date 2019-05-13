@@ -267,7 +267,7 @@ select s.name, am.attendDate, am.state from tblStudent s --학생 테이블
 --class AttendanceMgmt
 --날짜 조회
 -- 전체 학생 날짜 조회
-select s.name from tblStudent s --학생 테이블
+select s.name, am.state from tblStudent s --학생 테이블
     inner join tblRegiCourse rg --수강신청 테이블
         on s.student_seq = rg.student_seq
             inner join tblAttendanceMgmt am --근태관리 테이블
@@ -351,8 +351,8 @@ select tea.subjective_A from tblTeacher t
 
 -- class DTO EvalObjective
 --객관식
---create or replace view vwResult_Objective
---as
+create or replace view vwResult_Objective
+as
 select t.teacher_seq, teq.question, tea.objective_A, tea.evalq_seq from tblTeacher t --교사계정 테이블
     inner join tblTeacherCourse tc --담당과정 테이블
         on t.teacher_seq = tc.teacher_seq
@@ -367,8 +367,8 @@ select t.teacher_seq, teq.question, tea.objective_A, tea.evalq_seq from tblTeach
                                             inner join tblExample e --보기 테이블
                                                 on e.example_seq = tea.objective_A
                                                     inner join tblTeacherEval_Q teq --평가문제 테이블
-                                                        on teq.evalQ_seq = tea.evalQ_seq;
-                                                            --where t.teacher_seq = 현재 로그인 된 교사 번호 변수;
+                                                        on teq.evalQ_seq = tea.evalQ_seq
+                                                            where t.teacher_seq = 1;
 drop view vwResult_Objective;
 
 
@@ -400,7 +400,7 @@ select question,evalq_seq,
         else null
     end) / count(*) * 100 as VeryBad
 from vwResult_Objective vwro
-    --where vwro.teacher_seq = 현재 로그인 된 교사 번호 변수
+    where vwro.teacher_seq = 1
             group by question, evalq_seq
                 order by evalq_seq asc;
 
@@ -420,8 +420,9 @@ select s.student_seq, s.name, s.tel, s.major, cr.requestDate, cr.requestContent 
                             inner join tblteachercourse tc
                                 on tc.opencourse_seq = oc.opencourse_seq
                                     inner join tblTeacher t
-                                        on t.teacher_seq = tc.teacher_seq;
-                                            --where t.teacher_seq = 현재 로그인 된 교사 번호 변수;
+                                        on t.teacher_seq = tc.teacher_seq
+                                            where t.teacher_seq = 1;
+                                            --cr.consultfin = 'n';
                     
 -- class DTO_consultFinish
 --2. 상담 내역 확인(완료 목록 조회)
@@ -437,8 +438,8 @@ select s.student_seq, s.name, crecord.recorddate, crecord.recordcontent from tbl
                                     inner join tblTeacher t
                                         on t.teacher_seq = tc.teacher_seq
                                             inner join tblConsultRecord crecord
-                                                on crecord.consult_seq = cr.consult_seq;
-                                                    --where t.teacher_seq = 현재 로그인 된 교사번호변수;
+                                                on crecord.consult_seq = cr.consult_seq
+                                                    where t.teacher_seq = 1;
 -- class DTO_consultFinish
 --상담 요청 번호(변수에 저장할)                                                    
 select cr.consult_seq from tblStudent s
@@ -519,11 +520,14 @@ from tblStudent st --학생 테이블
                                             inner join tblteachercourse tc --담당과정 테이블
                                                 on tc.opencourse_seq = oc.opencourse_seq
                                                     inner join tblattendancemgmt admg
-                                                        on admg.regicourse_seq = rg.regicourse_seq
+                                                        on admg.regicourse_seq = rg.regicourse_seq;
                                                           -- where tc.teacher_seq = 1
                                                             -- and oc.opencourse_seq = 1
                                                                -- and su.subject_seq = 1
                                                                  --   and admg.state = '수료 중';
-
+select * from tblconsultrecord;
                  
-                    
+insert INTO tblConsultRequest (consult_seq, requestDate, requestContent, regiCourse_seq, consultfin) VALUES (ConsultRequest_seq.nextVal, to_char(sysdate,'yyyy-mm-dd'), '배세개세', 1, default);      
+select * from tblConsultRequest;
+commit;
+delete from tblConsultRequest where consult_seq = 4;
