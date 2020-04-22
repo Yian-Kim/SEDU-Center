@@ -1,40 +1,122 @@
-# SEDU-Center
-- JDBC 프로젝트 : 교육센터 운영 프로그램
+# SEDU Center
 
-## 1. Introduce
-- 진행기간 : 2019.04.05 ~ 2019.04.19 (15일, 일 4시간)
-- 주요내용 : 관계형 데이터베이스 기반의 교육센터 운영 프로그램 개발
+**SW 교육센터 운영 프로그램입니다.** 
 
-## 2. Core Task
-### - 관리자
-- 교사 계정 관리 <br>
-- 개설 과정 및 과목 관리 <br>
-- 학생 관리 <br>
-- 시험 관리 및 성적 조회 <br>
-- 출결 관리 및 출결 조회 <br>
-- 교사 평가 관리 및 결과 조회 <br>
-- 상담일지 관리 및 조회 <br>
+![Sedu Center](https://lh3.googleusercontent.com/njcRLu4P-aMYgvoru5r5UkKF89NMDx5afDfaDUs0avudPIrKydIBHXSAhvDcp6yAinrSxbXkdS48VDdTxDT-misO1AUieftlxNKBVEILhT4sL6gLFwixojCHvh9hWvwFWohm7dPhHJi2RbS2lqFWMmY7rgQvke_k0AG5635BSC92q82wffNnwp9rDioNiSwJJDNuROZpyphAAa8CKE4T2bkfd_GCDu3SW8f2htQcaskSPizM-1kXxid63iQXLKqjvCMCOm6AT_GTOcSlXW7BPlg6CRd9E3qPk64iEM0EnLunVMAQN-mz_EQoTxr8NwP48JnvSYmEWzkUM3pBdlALYb46hYjmUtj97M7el36e1gkc7nOq52veVK1V2utc5XUgo76kpp-7622x4myvq6aYQs40_otatIlfThSc3H1yQxKk1_P39V1KR6lHf0Xqx0RQQQHiBD1Yb3GaCiNDN0T5l-pfYqWMILBP6TCKEu3Z0AZ_FCNsWNESnK_p5QCZosht-cuEkakVfwkmY-2QdnRuC_bHJoo2c8KL_Sb35xUBH0G87qatRfw7kzRYR0yXLenE0dbaJKjdEbxUC_M15h9PZ_4_geb0bJAIGHFeWd78EOGBcl6S_XlbciLBLpEDY9qqMIIQh87GGirSFyWfdEhw04y4auhWJixSdhzIwz0-U8uiH4sIiP1i16jT87KLng=w1345-h817-no "Preview")
 
-### - 교사
-- 강의스케줄 조회 <br>
-- 성적 입출력 <br>
-- 출결관리 및 조회 <br>
-- 교사평가 조회 <br>
-- 상담일지 조회 <br>
+### 👋 Introduction
 
-### - 학생
-- 성적 조회 <br>
-- 출결 조회 <br>
-- 교사 평가 <br>
-- 상담 신청 <br>
-- 상담 일지 조회 <br>
-- 과정 및 과목 조회 <br>
-- 출석부 입력 <br>
+<table>
+    <tr>
+        <th>프로젝트명</th>
+        <th>SEDU Center</th>
+        <th>개발 기간</th>
+        <th>2019.04.05. ~ 2019.04.19. <br>(일 4시간, 총 15일)</th>
+    </tr>
+    <tr>
+        <th>프로젝트 성격</th>
+        <th>세미 프로젝트</th>
+        <th>개발 인원</th>
+        <th>팀 / 6명<br>
+          (<a href="https://github.com/chanmi-kim">KCM</a>,
+          <a href="https://github.com/SeHoonBae">BSH</a>,
+          <a href="https://github.com/daahyunee">LDH</a>,
+          <a href="https://github.com/AlfredCho">JSB</a>,
+          <a href="https://github.com/jubi93">YJY</a>,
+          <a href="https://github.com/popcon4199">CYN</a>)
+      </th>
+    </tr>
+      <tr>
+        <th>프로젝트 개요</th>
+        <th>관계형 데이터베이스 기반의 <br>교육센터 운영 프로그램 개발</th>
+        <th>개발 환경</th>
+        <th>Eclipse JEE, Oracle DB, Java(JDK1.8)</th>
+    </tr>
+        <tr>
+        <th>주요 기술</th>
+        <th>Java, SQL</th>
+        <th>비고</th>
+        <th> </th>
+    </tr>
+</table>
 
-## 3. Member & Role
-- KCM ([Chanmi-Kim](https://github.com/Chanmi-Kim)) : 교사 개발 / 소스취합 / 발표 <br>
-- BSH ([SeHoonBae](https://github.com/SeHoonBae)) : 관리자 개발 / 소스취합 / 버그수정 / 발표 보조 <br>
-- LDH ([daahyunee](https://github.com/daahyunee)) : 학생 개발 / 문서작업 <br>
-- JSB ([AlfredCho](https://github.com/AlfredCho)) : 교사 개발 / 문서작업 / DAO 취합 <br>
-- YJY ([jubi93](https://github.com/jubi93)) : 관리자 개발 / 소스취합 <br>
-- CYN ([popcon4199](https://github.com/popcon4199))  : 관리자 개발 / 문서작업 <br>
+### 📼 Appearance
+
+<table>
+    <tr>
+       <th>Customer</th>
+       <th>Admin</th>
+    </tr>
+    <tr>
+        <th><img src=""></th>
+        <th><img src=""></th>
+    </tr>
+    <tr>
+        <th><img src=""></th>
+        <th><img src=""></th>
+    </tr>
+</table>
+
+### 📑 Role & Member
+
+<table>
+    <tr>
+        <th>업무/구성원</th>
+        <th><a href="https://github.com/daahyunee">LDH</a></th>
+        <th><a href="https://github.com/chanmi-kim">KCM</a></th>
+        <th><a href="https://github.com/SeHoonBae">BSH</a></th>
+        <th><a href="https://github.com/AlfredCho">JSB</a></th>
+        <th><a href="https://github.com/jubi93">YJY</a></th>
+        <th><a href="https://github.com/popcon4199">CYN</a></th>
+    </tr>
+    <tr>
+        <th>프로젝트 기획</th>
+        <th>개요작성</th>
+        <th colspan="5">회의 / 의견제안</th>
+    </tr>
+    <tr>
+        <th>요구분석</th>
+        <th colspan="6">회의 / 의견제안 / 문서작성</th>
+    </tr>
+    <tr>
+        <th>데이터설계</th>
+        <th colspan="6">회의 / 의견제안 / 문서작성</th>
+    </tr>
+    <tr>
+        <th>기능명세서</th>
+        <th>문서정리</th>
+        <th colspan="5">문서작성</th>
+    </tr>
+    <tr>
+        <th>화면설계</th>
+        <th>학생</th>
+        <th>교사</th>
+        <th>관리자</th>
+        <th>교사</th>
+        <th colspan="2">관리자</th>
+    </tr>
+    <tr>
+        <th>소스(코딩)</th>
+        <th>학생 부분 <br>개발 및 화면<br>설계</th>
+        <th>교사 부분 <br>개발 및 화면<br>설계, 교사 <br>소스 취합</th>
+        <th>관리자 부분 <br>개발, 및 화면<br>설계, 관리자 <br>소스 취합</th>
+        <th>교사 부분 개발, <br>및 화면설계, <br>전체 소스 취합</th>
+        <th>관리자 부분 <Br>개발, 및 <Br>화면설계</th>
+        <th>관리자 부분 <br>개발</th>
+    </tr>
+    <tr>
+        <th>발표자료</th>
+        <th>발표보조</th>
+        <th>발표 및 <br>자료작성</th>
+        <th colspan="4">의견제안 / 화면캡쳐</th>
+    </tr>
+    <tr>
+        <th>역할</th>
+        <th>학생 부분 <br>개발 / 문서 <br>정리 / <br>의견제안</th>
+        <th>교사 부분 <br>개발 / 발표 <br>/소스취합</th>
+        <th>관리자 부분 <br>개발 / <br>소스취합 / <br>버그수정 / <br>발표보조</th>
+        <th>교사 부분 <br>개발 / <br>소스취합 / <br>문서정리 / <br>의견제안</th>
+        <th>관리자 부분 <br>개발 / <br>소스취합 / <br>문서작성 / <br>의견제안</th>
+        <th>관리자 부분 <br>개발 / <br>문서작성</th>
+    </tr>
+</table>
