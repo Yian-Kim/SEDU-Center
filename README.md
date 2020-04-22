@@ -1,8 +1,6 @@
 # SEDU Center
 
-**SW 교육센터 운영 프로그램입니다.** 
-
-![Sedu Center](https://lh3.googleusercontent.com/njcRLu4P-aMYgvoru5r5UkKF89NMDx5afDfaDUs0avudPIrKydIBHXSAhvDcp6yAinrSxbXkdS48VDdTxDT-misO1AUieftlxNKBVEILhT4sL6gLFwixojCHvh9hWvwFWohm7dPhHJi2RbS2lqFWMmY7rgQvke_k0AG5635BSC92q82wffNnwp9rDioNiSwJJDNuROZpyphAAa8CKE4T2bkfd_GCDu3SW8f2htQcaskSPizM-1kXxid63iQXLKqjvCMCOm6AT_GTOcSlXW7BPlg6CRd9E3qPk64iEM0EnLunVMAQN-mz_EQoTxr8NwP48JnvSYmEWzkUM3pBdlALYb46hYjmUtj97M7el36e1gkc7nOq52veVK1V2utc5XUgo76kpp-7622x4myvq6aYQs40_otatIlfThSc3H1yQxKk1_P39V1KR6lHf0Xqx0RQQQHiBD1Yb3GaCiNDN0T5l-pfYqWMILBP6TCKEu3Z0AZ_FCNsWNESnK_p5QCZosht-cuEkakVfwkmY-2QdnRuC_bHJoo2c8KL_Sb35xUBH0G87qatRfw7kzRYR0yXLenE0dbaJKjdEbxUC_M15h9PZ_4_geb0bJAIGHFeWd78EOGBcl6S_XlbciLBLpEDY9qqMIIQh87GGirSFyWfdEhw04y4auhWJixSdhzIwz0-U8uiH4sIiP1i16jT87KLng=w1345-h817-no "Preview")
+![Sedu Center](https://lh3.googleusercontent.com/LJM9_jDTWkeRDdjZkpm2Q-XkO2XHQgP71pvL7xyVhqfqywkKY9BQmPefwQt8FRN1mYYp7Ht70XgfApShpaTcTRLFUiC3wmeGw_JrNZWc8EgnSUgtTm22DNUc-Q_N9PHoNw0_6s4KTq_wy8TOwup_D1xiw44RYWVdV4iiaaJMQSuerjIhp0PR8e9z3LVsNKc6vSx66eAwoZJHQuu1oncNDcZ7E47IUXMSapirynfRMTQ4K_x8_NJj4DTqRLNRCS--oxiOqWoSk0j_7DfX9MCr1LwM0I4j7gywKsvEHpC1J_B2sE0NQ30laGuDzoewBJoKb8IJVdghwHpncfgYnxWVsyW3C_Eb8DcWHGw2fF6g1gNq7CW1Ab5KLdD--WS0s1Ge6nXAde2ekGbiT5k_ijDeZtYZb3iVTcsqlYsKrPln7xsi2yx7uzSYTn_mX2wsVqAdpnHzb1ki8SGbPmV5emYKEjVRqfV0qOlg9BuCnay1tQt6j6LBxOlPdzQqWR0qihxkOvIYwiRZJdXtob4jc8mhp4bSmDjjK2p7cw7ao4gSdoKvkBQvA3NEnM9I-0LKy05okQTo7N3QsEl85bL2Go0HU0S7T1fMcMMado97onsTI_vTkGNYjdH4N4sW05ZyoAoWQXmW3bb3QPBdJNqyFfyvuTc940wWgrRZTBvPFAj01AVa5MizwcZcgECcMp6PSQ=w1454-h969-no "Preview")
 
 ### 👋 Introduction
 
@@ -55,9 +53,9 @@
        <th>Admin</th>
     </tr>
     <tr>
-        <th><img width="266" src="https://lh3.googleusercontent.com/udV-OtHC3rQtq2XZkTn56hCQ_qWeNUWeXgHLY49uOO3Y-Mr0sH2QS9myp-NeW14lyM-JB3AH732qkXbZmOt6FyFzkVu2j6LUzzCJHSo9HXhv2cG3ibaprBDyO1gfKgHSE76bFyDJOI4MGt1JxepzPsWjy814VDssi0iO_L-DzSxVZhrLUCEww3yTMpPqjJ13bBFo8bwayVyaOnHpXpdbzHgbWW1KjgG2XX2cpMe5uhaMYF18DZ90Jlrf01sB-GUIl1SJk4ywFREr0HYurTyn4hsOy4YYxNWP1jwV3M2985N7ql706KNOLr1ctJ1p1qFIsvcx0--8j0lM-X691UWLvJTH0RijCKKK4ZHfZ2LHlxkq4Zw6x0q2Ez6HTrSIfuj1E7pSA5tlwv9MrBfd8zEe7f84rR9oeseJOvRFytEfsp0g557BypfT_90C6PToB7FY_aKpE1bYK7bD8V4nplsXQybMT49LX_ozeN2YHbFbkCi4uG7l299-ev3StUc93-mflNVDgs4RMw4H3S346OOtEupR-jUVcBf0WUy0VK5yXVFDTSGKThMS31kslNtRT47vknfz9p9h7fgzjMkGlJrzuQQX7CoxqoXhT5NHBl3JcMWeDTmM3ZgfdqfLBqWA91WYad5P1Q_r_QXu_2E8yhMYKC7TB2Tm5-vGD_6KmQ_iSA7s74OAI4FCQOww9TUa_Q=w1280-h720-no"></th>
-        <th><img width="266" src="https://lh3.googleusercontent.com/7h7avLB06QVxQtiUzTCB3bBgze32XGB7n5T55kPqbEGfGBqzBAB84u1VYwa5OPc1eMA8bwg_G16r4UEJxSbpSUX11V1IcVEbk7jBj03_omzOilD9BMgRaOoC20nC0fhDmeqTJ1YnnJDLIvlClOKnFM2xsGct7PfP9oGU8ZjfbV8-4Q7E-Hlzkt61MPrlhA5soON2QChxCmz9KbyywJ-W7hbhkmXe-tBZhLr8MTbVyDHYkqwwNmO6U0AdVq_e6vW_v1Sw7dz5pwou7idocZG1XoeCxLIwuHn24JD7NIA1vPXQzS7TfCU1rCUsASzI5lYhvsi09JaM9EaAo4v0pS5lZ1Vs55Z6XHuIAyXbIiTmk1fqjl36XTwT3mpNzd92jukBXwCWbPaHU22-e-B56TJqWkZyZ8VHQYpQys-d845Pbj9p6UfQPDU3t2xmioIUMaEAp2TnIPG1Jw99xY5_SSljn-iFm1ev0UDDwGLJ485cUR0igqOJUwqmTr1DBsOcfK1Juzf9U-znjPaDhxipg5cOv1Ijx1VLqzfc6jNJC4o6mnR7RfVzG_Aq5DE3B6i7IVcx2ATT1wxFLtulMgLOx82z9Dht4661mZXNY0dX_yH7JqFAKGfand2inionAhqT3ZFFkzGnNv54YU_bd1NMpQzicUyoSOcHMtwGGvlCuQWui0C-4Ff83nXE899FtVOo9A=w718-h404-no"></th>
-        <th><img width="266" src="https://lh3.googleusercontent.com/rpt-9pmfUrz0uy2TT84C5md47_GPRPUblRFOXp0dec7_9VASS8Qbj3EFBIph_jLcYC-TonxyfCAVnpSDUrHRccPntQAwJP2TXxeWwKdr9cZ-jE73YnUakMclpbXOa8U7007P5mImZ-T1WMI-JeZ1sAOKdKtpTZ2fUITjwjn5MKBPda_UTXYS5cOPB9skKwwOt_5EjW0S8_f8JEUkuMyh3KKVrLeXCnL9CmZlUuKpVtOfeThBSVWkGfwPg6xSlxsdXSr88oIopcDOOD3x4X8_ytjXqQKW6Scysg7gqBukeQBytD0ufzAciaapCiKeJDBUAlU3w4-vlCAqjLoMcBhukudX7LdzftInk8BTWVLBjExmlb_fzbAk2SOPtmbK978nVg5tl8eIWjbGF3xeRr0KQ43lIKxU1k9X6sqeTt29k95ZA-MzFYBG2U_6PhDec1nEngu8GI-mK-Zv3H9JSYm8Qr9Q2aIEzELOMDFFy_0-jqTn-FYLNYqX3np5p8eAg8kGfoAtXL_JmkEksfqaYviR6uRzRQJ3xK5TKmE3pCezC9Ma7vjrSszBSOFqgrr9g0ObAe94CwmcrGdqUtNLPbcvCo0d-HfbCG0woEA0dkA_wlzgS3eTPUj4HtfKiNnc34L5uuVuejE04aHilUenBGJ62lQMqpbjWV8HD0olMDg7ujea5F-YoA2FVWqb5KY85g=w1280-h720-no"></th>
+        <th><img width="266" src="https://lh3.googleusercontent.com/XgGBveOkrFhFxbIpD2-VOqO5LEqLTt4HgEzDr4hsZOtnRgtmzWBNRGi4RIW9KgATqbSAX2FCkL7O_sxmAAvqgT38pczEbvzde7sp4UdnPp03hrBlOtlyrj2FaD26Nsamz3xShQcmlXA6EBXag9gwaBCpYS2sCPOg37VfWBUC_LsAH3kicN6vNfdWaMNS8ppOgLwx0sLiflsIw7Hsj8QQpLacHe_mKjfHMRF0qVER75MU502qAtzjj4uQa5wGVetgdR5BekF3bYz3g95X44Tlkz9YzbPhpRNBJ9BD-GhG9TYwpFLuVF3ihFqr3pNWBokeUvSh7P5yzL8niJYb2ZOVkypQ75B4s11-_-XUBeSEGSVzD92gv4xfk99bFWk167fSYUHxacaR9Sf0n_ZEdoj2CEOiCc2ljlyIwmb-VdxrMDdxviIALG-9y9Yz7eUFCQJ7JMjsc5vh8EtwfS4jwK8c0F357wLtO2nI-ib4AcLII9TM7xqGX44LGdB0V_iXM4vrQ-HanHhaW6sfcAWzlE23NdNYJEXXauzAA4cU6AEeC4-TF4psxrIisyf-eRdHW2YhDgY2UK6PKepbmMdYsKlQptSBFifni7BgGGg_LnslCSZCJGBsIlqH0aObt8GbRnPEEUz64jXbt7mQwKpbHJxnt2hblIQ8CRoSnCIpysQH_drTJaSe7dp4o6NU2pJWrg=w1280-h720-no"></th>
+        <th><img width="266" src="https://lh3.googleusercontent.com/y7VAcL0vVhSM63rgzFThjkho2AuYDOKAAPYWAqEMfHqpalW_C4rkGZN6LBs-3Rh5up1obHPZSRoAE0xb2EVdeCWuENt4ziG3mGOPzwFYG_2O7Co_OuimabaSHuaFT59gP9xpxAXTGpA9IK_JAUYlVIWFta-DZB5wCwx4CCA9a0bdOwMGddtH4WbIEihzeN_C6dn-GQN0HWO4NhO19dERFn8qju9zIW2OoqmAnhm4Zbvff9LOO5jSJvnhrI7e5LOLF0316H4U-LEmG7osNs8qnJ2i0XpYuL-JDOqUYc-BRC1IBBHDoR4KA_eT6U85RE_xYFgrJhVhNd9YCw89yhN6VIv6fzJyA6tvhHxUYJNNAHwikJBYUXi2JN2mS2noPxBcDs-MHn6kBHGOoPQ1G9TWbOrOnUm1koZ28anzVGrrAgtr1ym0japjCE3HLcvezShE9l97ivYAXqRztuV8OK5qSQUhiwLcW27lzJ_LqSanWc_oHdjAiWim-vkK0_uEwKTCNakVdB1jjHyhYKpRTcFd4sfFreKsoDSZfDoCdloC7Uf2eBSjOOhqjiQ-khbTfpOR4BBMl5uhU2xWUdMSpV9TiOr44oYAoVScREL8jY9dlb-KeA-e50szu65r5jkCepyTs7kAOL5a28LwlODM9d-SRtdJWVLPqf6t2k2MquPyH2hTh8HmUtxzPhIB1uJXJQ=w1280-h720-no"></th>
+        <th><img width="266" src="https://lh3.googleusercontent.com/qHMyPJFOrrxtu-CQDdD2yNGrOYgPvvmOwF4mGvL2LGTvf6E5-u5JHrujL_OpORzNFewoNptcg2ADGeU3JlT_UuQCC9s5dMDI0lJz0ofPpi3FyTUreiPSjjGkU7WYNLXU3a0QDF9Cc0tVN2OzuCOrcq19uEiK242QDpAB0yMGQ_pBe9XgMsoGPj7My6mgmOM-QHFD__aox2ApqPQPRtDWvhWoMxiR5G2Liny9CPtNXNafCwdUSYoz68dVXlFEVAvhgYhC53FuIBXKsq7s1y2h-3m31Zoz85eC_BrTuiW8whKhvTdrH5uKLiBZTgBxMQ7roQXaos-WH8M7aisKEbO83NXGTZ7Vu9SwzPARk0wft4Y7amoieZPk_EHfaDQyAIp75K8C5c0EGsYQGnnk2cLDNSq6Wmx_nU4Qfx9yLaoTPCWYnQKx2bIHp_DHKFqiP01Y4adaqF1ABIQl1CzoO-1xRKLDRaBBxGan-ylOADkvorxbJ0gNnkR2yPW902IhjGmK0W-gHLmyY2tJR9oVLJ_CWtXWfABtW2TLv8SlK9LYOyrpnH65YMGnb8rIR7P78hRwVv61NEkVn0MEUdRYqDqXscodN2-aYmyUKQGWwYy69wDKMWdxD_HEaPCZ5vedA0zOZw1nvs3bjDCyvQ-eW4AhCPADdG2yTWkG0yL4QVsIjWygG_Y4TSaRsaiCfYMxhw=w1280-h720-no"></th>
     </tr>
 </table>
 
@@ -116,11 +114,11 @@
     </tr>
     <tr>
         <th>역할</th>
-        <th>학생 부분 <br>개발 / 문서 <br>정리 / <br>의견제안</th>
-        <th>교사 부분 <br>개발 / 발표 <br>/소스취합</th>
-        <th>관리자 부분 <br>개발 / <br>소스취합 / <br>버그수정 / <br>발표보조</th>
-        <th>교사 부분 <br>개발 / <br>소스취합 / <br>문서정리 / <br>의견제안</th>
-        <th>관리자 부분 <br>개발 / <br>소스취합 / <br>문서작성 / <br>의견제안</th>
-        <th>관리자 부분 <br>개발 / <br>문서작성</th>
+        <th>학생 부분 <br>개발 <br>/ 문서정리 <br>/ 의견제안</th>
+        <th>교사 부분 <br>개발 <br>/ 발표 <br>/소스취합</th>
+        <th>관리자 부분 <br>개발 <br>/ 소스취합 <br>/ 버그수정 <br>/ 발표보조</th>
+        <th>교사 부분 <br>개발 <br>/ 소스취합 <br>/ 문서정리 <br>/ 의견제안</th>
+        <th>관리자 부분 <br>개발 <br>/ 소스취합 <br>/ 문서작성 <br>/ 의견제안</th>
+        <th>관리자 부분 <br>개발 <br>/ 문서작성</th>
     </tr>
 </table>
