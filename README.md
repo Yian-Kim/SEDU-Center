@@ -74,15 +74,15 @@
     <tr>
         <th>프로젝트 기획</th>
         <th>개요작성</th>
-        <th colspan="5">회의 / 의견제안</th>
+        <th colspan="5">회의, 의견제안</th>
     </tr>
     <tr>
         <th>요구분석</th>
-        <th colspan="6">회의 / 의견제안 / 문서작성</th>
+        <th colspan="6">회의, 의견제안, 문서작성</th>
     </tr>
     <tr>
         <th>데이터설계</th>
-        <th colspan="6">회의 / 의견제안 / 문서작성</th>
+        <th colspan="6">회의, 의견제안, 문서작성</th>
     </tr>
     <tr>
         <th>기능명세서</th>
@@ -110,7 +110,7 @@
         <th>발표자료</th>
         <th>발표보조</th>
         <th>발표 및 <br>자료작성</th>
-        <th colspan="4">의견제안 / 화면캡쳐</th>
+        <th colspan="4">의견제안, 화면캡쳐</th>
     </tr>
     <tr>
         <th>역할</th>
