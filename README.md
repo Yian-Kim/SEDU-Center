@@ -26,7 +26,7 @@
     </tr>
       <tr>
         <th>프로젝트 개요</th>
-        <th>관계형 데이터베이스 기반의 <br>교육센터 운영 프로그램 개발</th>
+        <th>SW 교육센터 운영 프로그램</th>
         <th>개발 환경</th>
         <th>Eclipse JEE, Oracle DB, Java(JDK1.8)</th>
     </tr>
@@ -40,12 +40,14 @@
 
 ### 📼 Appearance
 
+관계형 데이터베이스 기반의 SW 교육센터 운영 프로그램입니다.
+
 <table>
     <tr>
         <th colspan="3">Task</th>
     </tr>
     <tr>
-        <th colspan="3"><img width="750"src="https://lh3.googleusercontent.com/g5f98BmBDqd64NkQN039Ok2DqCNYLbPs8L9urZ9P-SvxUevq82LGw18SXTCrfsNwYjy57KiL9AUfmu2_SvLIJZ2G25cekMrruNy92GgbEAwqDM1_9ASaxhE_LMSH9RSD5pPw0c_GOSjQL19CH5_ghtX0MXSLV8ea3pRD_FmkPWwUZtQj3adjs4SiBki7hb_EPGKuOTEW1j59u1MKt5HDkndiTVVhBmDhL5i8AxeEVWH-teKIex2OJI19jzpWOgWhZAGHZVDAnM8F_-o7tLOfSDkI-l45VUZKLeBqtXmPrqvzvsepXrrbfyV82Rv6sCVicWvjegSgk6Adu6a6EPV9wTcG1sAVmQaMOKM78O9YIwyipetrbf6mAmSIPvCcCR-TZDemLykO2TggoS-uD7XelvHN7eSIQf9eCotjzQCAOajggVU4P5KD5iYmCf9DWhyqrkAaMOfzuxGqY6E9mxduMmlqTi3ESpfBFkvCrcP0yCD-Dvzg_DKYDHUbzG4FZxaAxIjOAPYfnE16cWUiSwfu8RZKmq2u0a_PymhKiMuKdRzFZ-sIh57GxlDMzQS_MhaKa7F2xHOkKMQqVtbEbItOpbtxZnBtZmSlnKyAIJ_QmazXlfJ5G1sgv7y5bfpaGqRM1XFO06qFUiq1_kV555wiuYtScOe54c254BXPva6ZFHTqM6--UhjIPoe0EUiz0Q=w1280-h720-no"></th>
+        <th colspan="3"><img width="600"src="https://lh3.googleusercontent.com/g5f98BmBDqd64NkQN039Ok2DqCNYLbPs8L9urZ9P-SvxUevq82LGw18SXTCrfsNwYjy57KiL9AUfmu2_SvLIJZ2G25cekMrruNy92GgbEAwqDM1_9ASaxhE_LMSH9RSD5pPw0c_GOSjQL19CH5_ghtX0MXSLV8ea3pRD_FmkPWwUZtQj3adjs4SiBki7hb_EPGKuOTEW1j59u1MKt5HDkndiTVVhBmDhL5i8AxeEVWH-teKIex2OJI19jzpWOgWhZAGHZVDAnM8F_-o7tLOfSDkI-l45VUZKLeBqtXmPrqvzvsepXrrbfyV82Rv6sCVicWvjegSgk6Adu6a6EPV9wTcG1sAVmQaMOKM78O9YIwyipetrbf6mAmSIPvCcCR-TZDemLykO2TggoS-uD7XelvHN7eSIQf9eCotjzQCAOajggVU4P5KD5iYmCf9DWhyqrkAaMOfzuxGqY6E9mxduMmlqTi3ESpfBFkvCrcP0yCD-Dvzg_DKYDHUbzG4FZxaAxIjOAPYfnE16cWUiSwfu8RZKmq2u0a_PymhKiMuKdRzFZ-sIh57GxlDMzQS_MhaKa7F2xHOkKMQqVtbEbItOpbtxZnBtZmSlnKyAIJ_QmazXlfJ5G1sgv7y5bfpaGqRM1XFO06qFUiq1_kV555wiuYtScOe54c254BXPva6ZFHTqM6--UhjIPoe0EUiz0Q=w1280-h720-no"></th>
     </tr>
     <tr>
        <th>Student</th>
